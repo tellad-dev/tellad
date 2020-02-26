@@ -1,14 +1,18 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6 />
+    <TopTemplate />
   </v-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
+import TopTemplate from '~/components/templates/TopTemplate'
+
 @Component({
-  components: {},
+  components: {
+    TopTemplate,
+  },
 })
 export default class Index extends Vue {}
 </script>

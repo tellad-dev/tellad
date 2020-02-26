@@ -56,9 +56,9 @@ const nuxtConfig: Configuration = {
     '@nuxtjs/pwa',
     '@nuxtjs/vuetify',
   ],
-  router: {
-    middleware: 'auth',
-  },
+  // router: {
+  //   middleware: 'auth',
+  // },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
