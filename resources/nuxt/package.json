@@ -23,6 +23,7 @@
         "@nuxtjs/pwa": "^3.0.0-0",
         "@types/node": "^12.12.16",
         "axios": "^0.19.0",
+        "bootstrap-vue": "^2.5.0",
         "eslint-plugin-import": "^2.18.2",
         "nuxt": "2.10.2",
         "stylus": "^0.54.7",
