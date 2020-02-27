@@ -55,6 +55,7 @@ const nuxtConfig: Configuration = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/vuetify',
+    'bootstrap-vue/nuxt',
   ],
   // router: {
   //   middleware: 'auth',
