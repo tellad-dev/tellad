@@ -31,4 +31,10 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: tellad
       TZ: 'Asia/Tokyo'
-    
+  pgweb:
+    image: sosedoff/pgweb
+    container_name: "pgweb"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
