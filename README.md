@@ -51,6 +51,3 @@ $ yarn test
 # コード整形
 $ yarn lint {--fix}
 ```
-
-//pgweb scheme connect
-postgres://root:password@postgres:5432/tellad?sslmode=disable
