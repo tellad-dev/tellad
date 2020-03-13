@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TopTemplate from '~/components/templates/TopTemplate/TopTemplate.vue'
+import TopTemplate from '~/components/templates/TopTemplate'
 
 export default {
   components: {

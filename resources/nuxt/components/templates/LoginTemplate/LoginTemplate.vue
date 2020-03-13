@@ -23,29 +23,26 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { RepositoryFactory } from '~/repository/RepositoryFactory.js'
+const AuthRepository = RepositoryFactory.get('auth')
+
 export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    }
-  },
+  data: () => ({
+    email: '',
+    password: '',
+  }),
   methods: {
-    login() {
-      axios
-        .post('http://localhost:8080/api/login', {
-          email: this.email,
-          password: this.password,
-        })
-        .then(res => {
-          const token = res.data.access_token
-          axios.defaults.headers.common.Authorization = 'Bearer ' + token
-          this.$router.push({ path: '/' })
-        })
-        .catch(error => {
-          this.isError = console.log(error)
-        })
+    async login() {
+      const response = await AuthRepository.login({
+        /* something form data */
+        email: this.email,
+        password: this.password,
+      })
+      if (response.data.success) {
+        this._sendSuccess(response)
+      } else {
+        this._sendError(response.data.message)
+      }
     },
   },
 }
