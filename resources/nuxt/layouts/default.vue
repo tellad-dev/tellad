@@ -1,28 +1,22 @@
 <template>
-  <v-app light>
+  <v-app id="app">
+    <TheHeader />
     <v-content>
-      <TheHeader />
-
-      <v-container>
+      <v-container class="grey lighten-5 fill-height" fluid>
         <nuxt />
       </v-container>
     </v-content>
-
     <TheFooter />
   </v-app>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-import TheHeader from '~/components/organisms/global/TheHeader'
-import TheFooter from '~/components/organisms/global/TheFooter'
-
-@Component({
+<script>
+import TheHeader from '~/components/organisms/global/TheHeader/TheHeader.vue'
+import TheFooter from '~/components/organisms/global/TheFooter/TheFooter.vue'
+export default {
   components: {
     TheHeader,
     TheFooter,
   },
-})
-export default class Default extends Vue {}
+}
 </script>

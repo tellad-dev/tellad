@@ -1,46 +1,23 @@
 <template>
-  <v-footer light absolute class="footer">
-    <v-col md="10" offset-md="1">
-      <v-row no-gutters class="footer-links">
-        <v-col md="8">
-          <nuxt-link :to="{ name: '' }" class="footer-link">aa</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">bb</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">cc</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">dd</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">ee</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">ff</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">gg</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">hh</nuxt-link>
-          <nuxt-link :to="{ name: '' }" class="footer-link">ii</nuxt-link>
-        </v-col>
-        <v-col md="3" offset-md="1" class="brand-title">
-          Tellad<br />
-          テラッド
-        </v-col>
-      </v-row>
-
-      <v-row justify="center" no-gutters>
-        <v-divider />
-      </v-row>
-
-      <v-row justify="space-between" no-gutters>
-        <span>Copyright ©︎ 2020 Daft, inc. All Right Reserved.</span>
-        <span>Daft.inc</span>
-      </v-row>
-    </v-col>
+  <v-footer color="primary darken-1" padless>
+    <v-row justify="center" no-gutters>
+      <v-btn v-for="link in links" :key="link" color="white" text rounded class="my-2">
+        {{ link }}
+      </v-btn>
+      <v-col class="primary darken-2 py-4 text-center white--text" cols="12">
+        <strong> &copy; 2020 Tellad 運営 株式会社 Daft</strong>
+      </v-col>
+    </v-row>
   </v-footer>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component({
-  components: {
-    BaseButton: () => import('~/components/atoms/buttons/BaseButton'),
-    BrandLogo: () => import('~/components/atoms/BrandLogo'),
-  },
-})
-export default class TheFooter extends Vue {}
+<script>
+export default {
+  data: () => ({
+    drawer: false,
+    links: ['お知らせ', '会社概要', 'プライバシーポリシー', 'お問い合わせ', '利用規約', 'よくある質問', '利用の流れ'],
+  }),
+}
 </script>
 
 <style lang="stylus" scoped>

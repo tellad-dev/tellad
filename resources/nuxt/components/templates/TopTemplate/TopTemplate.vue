@@ -4,16 +4,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component({
-  name: 'TopTemplate',
-  components: {},
-})
-export default class TopTemplate extends Vue {
-  
-}
+<script>
+export default {}
 </script>
 
 <style></style>
