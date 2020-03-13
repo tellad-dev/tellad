@@ -1,35 +1,55 @@
 <template>
-  <v-app-bar color="white" light>
-    <BrandLogo />
+  <v-app-bar app color="primary darken-2" dark>
+    <brand-logo />
 
     <v-spacer />
 
-    <BaseButton text> Telladとは </BaseButton>
-    <BaseButton text>
+    <base-button text @click="$router.push({ name: 'about' })"> Telladとは </base-button>
+    <base-button text @click="$router.push({ name: 'mypage' })">
       利用の流れ
-    </BaseButton>
-    <BaseButton text>
+    </base-button>
+    <base-button text @click="$router.push({ name: 'qa' })">
       よくある質問
-    </BaseButton>
-    <BaseButton text>
+    </base-button>
+    <base-button text @click="$router.push({ name: 'message' })">
       メッセージ
-    </BaseButton>
-    <BaseButton text>
-      マイページ
-    </BaseButton>
+    </base-button>
+    <v-menu open-on-hover top offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn text v-on="on">
+          マイページ
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item v-for="(item, index) in items" :key="index" @click="$router.push({ name: item.title })">
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-app-bar>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component({
+<script>
+export default {
+  name: 'TheHeader',
   components: {
     BaseButton: () => import('~/components/atoms/buttons/BaseButton'),
     BrandLogo: () => import('~/components/atoms/BrandLogo'),
   },
-})
-export default class TheHeader extends Vue {}
+  data: () => ({
+    items: [
+      {
+        title: 'a',
+      },
+      {
+        title: 'b',
+      },
+      {
+        title: 'c',
+      },
+    ],
+  }),
+}
 </script>
 
 <style></style>

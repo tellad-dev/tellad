@@ -17,6 +17,7 @@
         "start": "nuxt-ts start"
     },
     "dependencies": {
+        "@braid/vue-formulate": "^2.2.2",
         "@nuxt/types": "^0.3.4",
         "@nuxt/typescript-runtime": "^0.2.4",
         "@nuxtjs/axios": "^5.8.0",

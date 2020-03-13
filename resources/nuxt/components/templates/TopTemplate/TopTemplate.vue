@@ -2,8 +2,16 @@
   <div>
     <section class="page-top">
       <div class>
-        <v-carousel cycle height="600px" hide-delimiters hide-delimiter-background show-arrows-on-hover>
-          <v-carousel-item v-for="(image, i) in images" :key="i" :src="image.src" />
+        <v-carousel cycle height="600px" hide-delimiters hide-delimiter-background :show-arrows="false">
+          <v-carousel-item v-for="(image, i) in images" :key="i" :src="image.src">
+            <v-row class="lightbox white--text pa-2 fill-height">
+              <v-col>
+                <div v-if="i == 0" class="display-4 text-center font-weight-bold">Tell + Ad</div>
+                <div v-if="i == 1" class="display-4 text-center font-weight-bold">Tell + Ad</div>
+                <div v-if="i == 2" class="display-4 text-center font-weight-bold">Tell + Ad</div>
+              </v-col>
+            </v-row>
+          </v-carousel-item>
         </v-carousel>
       </div>
     </section>
@@ -21,15 +29,13 @@
             </v-row>
 
             <v-card-actions class="pa-0 card-actions">
-              <BaseButton
+              <base-button
                 tile
                 large
                 color="primary"
                 elevation="0"
                 class="button-action white--text font-weight-default"
-              >
-                {{}}
-              </BaseButton>
+              />
             </v-card-actions>
           </v-card>
         </v-col>
@@ -47,15 +53,13 @@
             </v-row>
 
             <v-card-actions class="pa-0 card-actions">
-              <BaseButton
+              <base-button
                 tile
                 large
                 color="primary"
                 elevation="0"
                 class="button-action white--text font-weight-default"
-              >
-                {{}}
-              </BaseButton>
+              />
             </v-card-actions>
           </v-card>
         </v-col>
@@ -66,17 +70,19 @@
 
 <script>
 export default {
-  components: {},
+  components: {
+    BaseButton: () => import('~/components/atoms/buttons/BaseButton'),
+  },
   data: () => ({
     images: [
       {
-        src: 'icon.png',
+        src: 'hero-1.png',
       },
       {
-        src: 'icon.png',
+        src: 'hero-2.png',
       },
       {
-        src: 'icon.png',
+        src: 'hero-1.png',
       },
     ],
     spaces: [
@@ -84,25 +90,25 @@ export default {
         name: 'お店',
         area: '兵庫',
         price: '1000',
-        image: 'v.png',
+        image: 'building.jpg',
       },
       {
         name: 'お店',
         area: '兵庫',
         price: '1000',
-        image: 'v.png',
+        image: 'curtains.jpg',
       },
       {
         name: 'お店',
         area: '兵庫',
         price: '1000',
-        image: 'v.png',
+        image: 'sky.jpg',
       },
       {
         name: 'お店',
         area: '兵庫',
         price: '1000',
-        image: 'v.png',
+        image: 'wall.jpg',
       },
     ],
   }),

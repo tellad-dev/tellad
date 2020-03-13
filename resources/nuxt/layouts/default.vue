@@ -1,18 +1,10 @@
 <template>
   <v-app light>
+    <the-header />
     <v-content>
-      <TheHeader />
       <nuxt />
     </v-content>
-
-    <v-snackbar v-model="snackbar">
-      {{ snackbar }}
-      <v-btn color="white" text @click="snackbar = false">
-        Close
-      </v-btn>
-    </v-snackbar>
-
-    <TheFooter />
+    <the-footer />
   </v-app>
 </template>
 
@@ -25,8 +17,6 @@ export default {
     TheHeader,
     TheFooter,
   },
-  data: () => ({
-    snackbar: false,
-  }),
+  data: () => ({}),
 }
 </script>

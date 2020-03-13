@@ -1,16 +1,11 @@
 <template>
-  <TopTemplate />
+  <top-template />
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-import TopTemplate from '~/components/templates/TopTemplate'
-
-@Component({
+<script>
+export default {
   components: {
-    TopTemplate,
+    TopTemplate: () => import('~/components/templates/TopTemplate'),
   },
-})
-export default class Index extends Vue {}
+}
 </script>
