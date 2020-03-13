@@ -1,15 +1,15 @@
 <template>
   <v-layout column justify-center align-center>
-    <TopTemplate />
+    <LoginTemplate />
   </v-layout>
 </template>
 
 <script>
-import TopTemplate from '~/components/templates/TopTemplate'
+import LoginTemplate from '~/components/templates/LoginTemplate'
 
 export default {
   components: {
-    TopTemplate,
+    LoginTemplate,
   },
 }
 </script>
