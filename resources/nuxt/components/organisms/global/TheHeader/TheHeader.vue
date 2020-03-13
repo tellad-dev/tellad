@@ -1,15 +1,21 @@
 <template>
-  <v-app-bar color="white" light dense>
+  <v-app-bar color="white" light>
     <BrandLogo />
 
     <v-spacer />
 
+    <BaseButton text> Telladとは </BaseButton>
     <BaseButton text>
-      ログイン
+      利用の流れ
     </BaseButton>
-
     <BaseButton text>
-      会員登録
+      よくある質問
+    </BaseButton>
+    <BaseButton text>
+      メッセージ
+    </BaseButton>
+    <BaseButton text>
+      マイページ
     </BaseButton>
   </v-app-bar>
 </template>
@@ -26,4 +32,4 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class TheHeader extends Vue {}
 </script>
 
-<style lang="stylus"></style>
+<style></style>

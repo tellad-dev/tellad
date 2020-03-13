@@ -1,19 +1,127 @@
 <template>
   <div>
-    tellad
+    <section class="page-top">
+      <div class>
+        <v-carousel cycle height="600px" hide-delimiters hide-delimiter-background show-arrows-on-hover>
+          <v-carousel-item v-for="(image, i) in images" :key="i" :src="image.src" />
+        </v-carousel>
+      </div>
+    </section>
+
+    <section class="space">
+      <h1>エリアから探す</h1>
+      <v-row justify="center">
+        <v-col v-for="(space, index) in spaces" :key="index" :data-index="index" sm="3" class="pa-4">
+          <v-card class="card-outter" height="100%">
+            <v-img height="200px" :src="space.image" />
+            <v-row justify="center" no-gutters class="mb-0 card-space font-weight-default">
+              <v-col sm="10" no-gutters class="text-center">{{ space.name }}</v-col>
+              <v-col sm="10" offset-md="1" no-gutters class="body-2">{{ space.area }}</v-col>
+              <v-col sm="10" offset-md="1" no-gutters class="body-2">{{ space.price }}</v-col>
+            </v-row>
+
+            <v-card-actions class="pa-0 card-actions">
+              <BaseButton
+                tile
+                large
+                color="primary"
+                elevation="0"
+                class="button-action white--text font-weight-default"
+              >
+                {{}}
+              </BaseButton>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+
+      <h1>カテゴリから探す</h1>
+      <v-row justify="center">
+        <v-col v-for="(space, index) in spaces" :key="index" :data-index="index" sm="3" class="pa-4">
+          <v-card class="card-outter" height="100%">
+            <v-img height="200px" :src="space.image" />
+            <v-row justify="center" no-gutters class="mb-0 card-space font-weight-default">
+              <v-col sm="12" no-gutters class="text-center">{{ space.name }}</v-col>
+              <v-col sm="10" offset-md="1" no-gutters class="body-2">{{ space.area }}</v-col>
+              <v-col sm="10" offset-md="1" no-gutters class="body-2">{{ space.price }}</v-col>
+            </v-row>
+
+            <v-card-actions class="pa-0 card-actions">
+              <BaseButton
+                tile
+                large
+                color="primary"
+                elevation="0"
+                class="button-action white--text font-weight-default"
+              >
+                {{}}
+              </BaseButton>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </section>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component({
-  name: 'TopTemplate',
+<script>
+export default {
   components: {},
-})
-export default class TopTemplate extends Vue {
-  
+  data: () => ({
+    images: [
+      {
+        src: 'icon.png',
+      },
+      {
+        src: 'icon.png',
+      },
+      {
+        src: 'icon.png',
+      },
+    ],
+    spaces: [
+      {
+        name: 'お店',
+        area: '兵庫',
+        price: '1000',
+        image: 'v.png',
+      },
+      {
+        name: 'お店',
+        area: '兵庫',
+        price: '1000',
+        image: 'v.png',
+      },
+      {
+        name: 'お店',
+        area: '兵庫',
+        price: '1000',
+        image: 'v.png',
+      },
+      {
+        name: 'お店',
+        area: '兵庫',
+        price: '1000',
+        image: 'v.png',
+      },
+    ],
+  }),
 }
 </script>
 
-<style></style>
+<style scoped>
+.page-top {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f1f1d9;
+}
+
+.page-top .v-image {
+  max-width: 480px;
+}
+
+.space {
+  padding: 0 10%;
+}
+</style>

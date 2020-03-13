@@ -1,6 +1,6 @@
 <template>
   <div class="brand-title" @click="top()">
-    tellad
+    Tellad
   </div>
 </template>
 
@@ -16,6 +16,6 @@ export default class BrandLogo extends Vue {
 
 <style lang="stylus" scoped>
 .brand-title
-  font-size 20px
-  font-weight 900
+  font-size 35px
+  font-weight 400
 </style>

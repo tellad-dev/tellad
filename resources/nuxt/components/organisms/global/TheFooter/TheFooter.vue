@@ -1,5 +1,5 @@
 <template>
-  <v-footer light absolute class="footer">
+  <v-footer light absolute class="footer" app>
     <v-col md="10" offset-md="1">
       <v-row no-gutters class="footer-links">
         <v-col md="8">

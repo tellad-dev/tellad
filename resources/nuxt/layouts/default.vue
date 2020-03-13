@@ -2,27 +2,31 @@
   <v-app light>
     <v-content>
       <TheHeader />
-
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
+
+    <v-snackbar v-model="snackbar">
+      {{ snackbar }}
+      <v-btn color="white" text @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
 
     <TheFooter />
   </v-app>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
+<script>
 import TheHeader from '~/components/organisms/global/TheHeader'
 import TheFooter from '~/components/organisms/global/TheFooter'
 
-@Component({
+export default {
   components: {
     TheHeader,
     TheFooter,
   },
-})
-export default class Default extends Vue {}
+  data: () => ({
+    snackbar: false,
+  }),
+}
 </script>

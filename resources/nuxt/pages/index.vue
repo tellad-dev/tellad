@@ -1,7 +1,5 @@
 <template>
-  <v-layout column justify-center align-center>
-    <TopTemplate />
-  </v-layout>
+  <TopTemplate />
 </template>
 
 <script lang="ts">
