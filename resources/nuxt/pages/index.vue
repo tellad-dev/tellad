@@ -1,15 +1,11 @@
 <template>
-  <v-layout column justify-center align-center>
-    <TopTemplate />
-  </v-layout>
+  <top-template />
 </template>
 
 <script>
-import TopTemplate from '~/components/templates/TopTemplate'
-
 export default {
   components: {
-    TopTemplate,
+    TopTemplate: () => import('~/components/templates/TopTemplate'),
   },
 }
 </script>

@@ -42,7 +42,7 @@ module.exports = {
       // 無名関数を許可
       'func-names': 'off',
       // html部分をPascalにするかkebabにするかの選択
-      'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+      'vue/component-name-in-template-casing': ['error', 'kebab-case'],
       // 自己終了形式のコンポーネント
       'vue/html-self-closing': ['error', {
           'html': {

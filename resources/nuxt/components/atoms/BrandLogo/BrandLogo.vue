@@ -1,21 +1,21 @@
 <template>
-  <div class="brand-title" @click="top()">
-    tellad
+  <div class="brand-title clickable" @click="top()">
+    <v-img src="TelladLogo.png" alt="Tellad" width="70" />
   </div>
 </template>
 
-<script lang="ts">
-import { Vue } from 'vue-property-decorator'
-
-export default class BrandLogo extends Vue {
-  top(): void {
-    this.$router.push({ name: 'index' })
-  }
+<script>
+export default {
+  methods: {
+    top() {
+      this.$router.push({ name: 'index' })
+    },
+  },
 }
 </script>
 
 <style lang="stylus" scoped>
 .brand-title
-  font-size 20px
-  font-weight 900
+  font-size 35px
+  font-weight 400
 </style>

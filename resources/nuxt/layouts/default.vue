@@ -1,22 +1,22 @@
 <template>
-  <v-app id="app">
-    <TheHeader />
+  <v-app light>
+    <the-header />
     <v-content>
-      <v-container class="grey lighten-5 fill-height" fluid>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
-    <TheFooter />
+    <the-footer />
   </v-app>
 </template>
 
 <script>
-import TheHeader from '~/components/organisms/global/TheHeader/TheHeader.vue'
-import TheFooter from '~/components/organisms/global/TheFooter/TheFooter.vue'
+import TheHeader from '~/components/organisms/global/TheHeader'
+import TheFooter from '~/components/organisms/global/TheFooter'
+
 export default {
   components: {
     TheHeader,
     TheFooter,
   },
+  data: () => ({}),
 }
 </script>

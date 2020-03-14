@@ -42,11 +42,11 @@ const nuxtConfig: Configuration = {
   /*
    ** Global CSS
    */
-  css: ['~/assets/app.styl'],
+  css: ['~/assets/app.styl', '~/assets/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vue-scrollto', '~/plugins/vue-the-mask'],
+  plugins: ['~/plugins/vue-scrollto', '~/plugins/vue-the-mask', '~/plugins/vue-formulate'],
   /*
    ** Nuxt.js modules
    */

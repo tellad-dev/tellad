@@ -1,2 +1,89 @@
+.theme--light.v-application
+  background-color white !important
+
+section
+  margin 64px auto
+
+article
+  width 100%
+
 a
   text-decoration	none
+
+.loading
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  z-index 10
+  background rgba(255,255,255,0.5)
+
+.page-title
+  max-width 1280px
+  margin 0 auto
+
+.wrapper
+  max-width 1280px
+
+.v-btn
+  text-transform none !important
+
+.row
+  margin-bottom 64px
+
+.font-weight-default
+  font-weight 800 !important
+
+.clickable
+  cursor pointer
+
+.unselectable
+  user-select none
+  -moz-user-select none
+  -webkit-user-select none
+  -ms-user-select none
+
+.horizontal-text
+  padding-top 20px
+
+// ----------------------------------
+// Transition
+// ----------------------------------
+.fade-enter-active,
+.fade-leave-active
+  transition opacity 0.5s
+
+.fade-enter, .fade-leave-to
+  opacity 0
+
+.slide-left-enter,
+.slide-right-leave-active
+  transition all 0.25s
+  opacity 0
+  transform translate(50%, 0)
+
+.slide-left-leave-active,
+.slide-right-enter
+  transition all 0.25s
+  opacity 0
+  transform translate(-50%, 0)
+
+.slide-up-enter,
+.slide-down-leave-active
+  transition all 0.25s
+  opacity 0
+  transform translate(0, 50%)
+
+.slide-up-leave-active,
+.slide-down-enter
+  transition all 0.25s
+  opacity 0
+  transform translate(0, -50%)
+
+.card-list-enter-active, .card-list-leave-active, .card-list-move
+  transition all 0.5s
+
+.card-list-enter, .card-list-leave-to
+  opacity 0
+  transform translateY(40px)
