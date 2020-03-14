@@ -14,7 +14,7 @@
     <base-button text @click="$router.push({ name: 'message' })">
       メッセージ
     </base-button>
-    <v-menu open-on-hover top offset-y>
+    <v-menu v-if="isLogin()" open-on-hover top offset-y>
       <template v-slot:activator="{ on }">
         <v-btn text v-on="on">
           マイページ
@@ -26,6 +26,15 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <base-button v-if="!isLogin()" text @click="$router.push({ name: 'login' })">
+      ログイン
+    </base-button>
+    <base-button v-if="!isLogin()" text @click="$router.push({ name: 'registration' })">
+      会員登録
+    </base-button>
+    <base-button v-if="isLogin()" text @click="$router.push({ name: 'logout' })">
+      ログアウト
+    </base-button>
   </v-app-bar>
 </template>
 
@@ -49,6 +58,25 @@ export default {
       },
     ],
   }),
+  mounted() {
+    this.isLogin()
+  },
+
+  // ログイン済みかどうか
+  methods: {
+    isLogin() {
+      // return authStore.user.key != ''
+      return false
+    },
+    // logout() {
+    //   authStore.logout()
+    //   .then(() => {
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
+    // }
+  },
 }
 </script>
 
