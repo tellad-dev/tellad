@@ -238,8 +238,10 @@ return [
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
 
         // Model
+        'UserModel' => 'App\Facades\Models\User',
 
         // Service
+        'UserService' => 'App\Facades\Services\User',
     ],
 
 ];
