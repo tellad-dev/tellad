@@ -20,9 +20,8 @@ Route::group(["middleware" => "guest:api"], function () {
 Route::group(["middleware" => "auth:api"], function () {
     //Auth API
     Route::get("/me", "AuthController@me");
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('refresh', 'AuthController@refresh');
+    Route::post('/logout', 'AuthController@logout');
+    Route::post('/refresh', 'AuthController@refresh');
     //Users REST API
     Route::resource('users', 'UsersController');
 });
