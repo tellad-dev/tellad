@@ -166,6 +166,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //barryvdh/laravel-cors
         Barryvdh\Cors\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Package Service Providers...
