@@ -29,7 +29,7 @@
     <base-button v-if="!isLogin()" text @click="$router.push({ name: 'login' })">
       ログイン
     </base-button>
-    <base-button v-if="!isLogin()" text @click="$router.push({ name: 'registration' })">
+    <base-button v-if="!isLogin()" text @click="$router.push({ name: 'signup' })">
       会員登録
     </base-button>
     <base-button v-if="isLogin()" text @click="$router.push({ name: 'logout' })">
