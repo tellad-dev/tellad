@@ -231,6 +231,15 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // Component
+        'ArrayUtil'  =>
+        'App\Facades\Components\ArrayUtil',
+        'ApiResponseBuilder'  =>
+        'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
+
+        // Model
+
+        // Service
     ],
 
 ];
