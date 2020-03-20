@@ -2,10 +2,10 @@
   <div class="signup grey lighten-4">
     <v-card class="mx-auto signup-card">
       <v-card-title class="align-end justify-center mb-9">
-        <h3>新規会員登録</h3>
+        <h3>プロフィール登録</h3>
       </v-card-title>
       <v-row justify="center" no-gutters>
-        <FormulateForm v-model="formValues" class="signup-form" @submit="login">
+        <FormulateForm v-model="formValues" class="signup-form" @submit="save">
           <p>
             You can place any elements you want inside a form. The inputs themselves can even be deeply nested.
           </p>
@@ -17,25 +17,35 @@
             placeholder="Email address"
             validation="required|email"
           />
+          <FormulateInput name="company" type="text" label="会社名" placeholder="会社名" validation="required" />
+          <FormulateInput name="industry" type="text" label="業種" placeholder="業種" validation="required" />
+          <FormulateInput
+            name="url"
+            type="url"
+            label="会社URL"
+            placeholder="https://example.com"
+            help="Sample url help text"
+            validation="required"
+          />
+          <FormulateInput name="phone" type="tel" label="電話番号" placeholder="xxx-xxxx-xxxx" validation="required" />
+          <FormulateInput name="industry" type="text" label="業種" placeholder="業種" validation="required" />
+          <FormulateInput
+            name="summary"
+            type="textarea"
+            label="事業概要"
+            validation="required|max:500,length"
+            validation-name="tweet"
+            error-behavior="live"
+          />
           <div class="double-wide">
-            <FormulateInput
-              name="password"
-              type="password"
-              label="パスワード"
-              placeholder="Your password"
-              validation="required"
-            />
-            <FormulateInput
-              name="password_confirm"
-              type="password"
-              label="確認用パスワード"
-              placeholder="Confirm password"
-              validation="required|confirm"
-              validation-name="Confirmation"
-            />
+            <FormulateInput name="zipcode" type="text" label="郵便番号" placeholder="xxx-xxxx" validation="required" />
+            <div class="auto-button">
+              <FormulateInput type="button" label="住所を自動で入力" />
+            </div>
           </div>
+          <FormulateInput name="address" type="text" label="住所" placeholder="住所" validation="required" />
           <div class="submit-button">
-            <FormulateInput type="submit" label="次へ進む" />
+            <FormulateInput type="submit" label="登録" />
           </div>
         </FormulateForm>
       </v-row>
@@ -44,32 +54,14 @@
 </template>
 
 <script>
-// import { RepositoryFactory } from '~/repository/RepositoryFactory.js'
-// const AuthRepository = RepositoryFactory.get('auth')
-
 export default {
   data: () => ({
-    valid: false,
-    email: '',
-    password: '',
     formValues: {},
   }),
   methods: {
-    // async login() {
-    //   const response = await AuthRepository.login({
-    //     /* something form data */
-    //     email: this.email,
-    //     password: this.password,
-    //   })
-    //   if (response.data.success) {
-    //     this._sendSuccess(response)
-    //   } else {
-    //     this._sendError(response.data.message)
-    //   }
-    // },
-    login() {
+    save() {
       console.log(this.formValues)
-      this.$router.push({ name: 'signup/select-user' })
+      this.$router.push({ name: 'index' })
     },
   },
 }
