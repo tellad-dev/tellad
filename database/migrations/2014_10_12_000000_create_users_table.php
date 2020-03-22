@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();;
-            $table->string('user_type')->nullable();
-            $table->integer('facebook_id')->nullable()->unique();
+            $table->string('password')->nullable();
+            $table->unsignedInteger('type')->nullable()->comment('0がゲスト, 1がホスト');
+            $table->unsignedInteger('facebook_id')->nullable()->unique();
             $table->string('stripe_id')->nullable()->unique()->comment('Stripeの顧客ID');
             $table->integer('status')->nullable()->comment('0が無料会員, 1が有料会員');
-            $table->integer('is_deleted')->nullable()->comment('0が登録, 1が退会');
+            $table->timestamp('last_login_at')->nullable()->comment('退会日時');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
