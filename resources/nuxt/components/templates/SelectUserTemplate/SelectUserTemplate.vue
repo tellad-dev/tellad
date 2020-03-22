@@ -5,35 +5,19 @@
         <h3>新規会員登録</h3>
       </v-card-title>
       <v-row justify="center" no-gutters>
-        <FormulateForm v-model="formValues" class="signup-form" @submit="login">
+        <FormulateForm v-model="formValues" class="signup-form" @submit="next">
           <p>
             You can place any elements you want inside a form. The inputs themselves can even be deeply nested.
           </p>
           <!-- <FormulateInput name="name" type="text" label="Your name" placeholder="Your name" validation="required" /> -->
+          <FormulateInput name="name" type="text" label="氏名" placeholder="お名前" validation="required" />
           <FormulateInput
-            name="email"
-            type="email"
-            label="メールアドレス"
-            placeholder="Email address"
-            validation="required|email"
+            type="radio"
+            name="type"
+            error-behavior="live"
+            validation="in:Guest,Host"
+            :options="{ Guest: 'ゲストで利用する', Host: 'ホストで利用する' }"
           />
-          <div class="double-wide">
-            <FormulateInput
-              name="password"
-              type="password"
-              label="パスワード"
-              placeholder="Your password"
-              validation="required"
-            />
-            <FormulateInput
-              name="password_confirm"
-              type="password"
-              label="確認用パスワード"
-              placeholder="Confirm password"
-              validation="required|confirm"
-              validation-name="Confirmation"
-            />
-          </div>
           <div class="submit-button">
             <FormulateInput type="submit" label="次へ進む" />
           </div>
@@ -44,32 +28,24 @@
 </template>
 
 <script>
-// import { RepositoryFactory } from '~/repository/RepositoryFactory.js'
-// const AuthRepository = RepositoryFactory.get('auth')
-
 export default {
   data: () => ({
-    valid: false,
-    email: '',
-    password: '',
-    formValues: {},
+    formValues: {
+      name: '',
+      type: '',
+    },
   }),
   methods: {
-    // async login() {
-    //   const response = await AuthRepository.login({
-    //     /* something form data */
-    //     email: this.email,
-    //     password: this.password,
-    //   })
-    //   if (response.data.success) {
-    //     this._sendSuccess(response)
-    //   } else {
-    //     this._sendError(response.data.message)
-    //   }
-    // },
-    login() {
+    next() {
       console.log(this.formValues)
-      this.$router.push({ name: 'signup/select-user' })
+
+      if (this.formValues.type === 'Guest') {
+        this.$router.push({ name: 'user/mypage/profile', params: { id: '' } })
+      }
+
+      if (this.formValues.type === 'Host') {
+        this.$router.push({ name: '' })
+      }
     },
   },
 }
