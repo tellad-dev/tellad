@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 
 /*
@@ -22,6 +23,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt('password'),
+        'status' => Arr::random([0,1]),
         'remember_token' => Str::random(10),
     ];
 });
