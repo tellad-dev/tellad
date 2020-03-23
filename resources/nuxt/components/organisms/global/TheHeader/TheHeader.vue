@@ -44,7 +44,7 @@
         <v-divider />
         <v-list nav dense>
           <v-list-item-group v-model="item" color="primary">
-            <v-list-item v-for="(item, i) in items" :key="i">
+            <v-list-item v-for="(item, i) in items" :key="`user${i}`" @click="$router.push({ name: item.url })">
               <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
@@ -57,7 +57,7 @@
               <v-list-item-title class="ml-1">ゲスト</v-list-item-title>
             </v-list-item-content>
             <v-divider />
-            <v-list-item v-for="(item, i) in guestItems" :key="i">
+            <v-list-item v-for="(item, i) in guestItems" :key="`guest${i}`" @click="$router.push({ name: item.url })">
               <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
@@ -70,7 +70,7 @@
               <v-list-item-title class="ml-1">ホスト</v-list-item-title>
             </v-list-item-content>
             <v-divider />
-            <v-list-item v-for="(item, i) in hostItems" :key="i">
+            <v-list-item v-for="(item, i) in hostItems" :key="`host${i}`" @click="$router.push({ name: item.url })">
               <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
@@ -112,28 +112,35 @@ export default {
     items: [
       {
         title: 'プロフィールの編集',
+        url: 'mypage-profile',
       },
       {
         title: 'クレジットカードの登録',
+        url: 'mypage-payments',
       },
       {
         title: 'リクエストの管理',
+        url: 'mypage-requests',
       },
     ],
     guestItems: [
       {
         title: '広告の管理',
+        url: 'mypage-ads',
       },
       {
         title: '広告の登録',
+        url: 'mypage-ads-registration',
       },
     ],
     hostItems: [
       {
-        title: 'スペースの登録',
+        title: 'スペースの管理',
+        url: 'mypage-spaces',
       },
       {
-        title: 'スペースの管理',
+        title: 'スペースの登録',
+        url: 'mypage-spaces-registration',
       },
     ],
   }),
