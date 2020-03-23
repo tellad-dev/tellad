@@ -1,11 +1,11 @@
 <template>
-  <ads-template />
+  <my-shops-template />
 </template>
 
 <script>
 export default {
   components: {
-    AdsTemplate: () => import('~/components/templates/AdsTemplate'),
+    MyShopsTemplate: () => import('~/components/templates/MyShopsTemplate'),
   },
 }
 </script>
