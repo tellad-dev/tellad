@@ -1,6 +1,6 @@
 <template>
   <div class="brand-title clickable" @click="top()">
-    <v-img src="TelladLogo.png" alt="Tellad" width="70" />
+    <v-img src="/TelladLogo.png" alt="Tellad" width="70" />
   </div>
 </template>
 

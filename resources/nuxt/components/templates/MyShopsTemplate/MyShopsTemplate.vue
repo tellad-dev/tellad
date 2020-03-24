@@ -18,7 +18,7 @@
           </v-list-item>
 
           <v-card-actions>
-            <base-button text tile color="green" @click="this.$router.push({ name: '/mypage/shops-id/' })"
+            <base-button text tile color="green" @click="this.$router.push({ name: 'mypage-shops-id' })"
               >編集</base-button
             >
             <base-button text tile color="red">削除</base-button>

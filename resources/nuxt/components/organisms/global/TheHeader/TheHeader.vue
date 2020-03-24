@@ -130,7 +130,7 @@ export default {
       },
       {
         title: '広告の登録',
-        url: 'mypage-ads-registration',
+        url: 'mypage-ads-id',
       },
     ],
     hostItems: [
@@ -140,7 +140,7 @@ export default {
       },
       {
         title: 'スペースの登録',
-        url: 'mypage-spaces-registration',
+        url: 'mypage-spaces-id',
       },
     ],
   }),
