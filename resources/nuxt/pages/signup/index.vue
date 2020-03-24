@@ -23,7 +23,7 @@ export default {
       //     //
       //   })
       await console.log('formValues', values)
-      // this.$router.push({ name: 'signup/select-user' })
+      this.$router.push({ name: 'signup-select-user' })
     },
   },
 }

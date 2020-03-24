@@ -24,7 +24,7 @@ export default {
       await console.log(values)
 
       if (values.type === 'Guest') {
-        this.$router.push({ name: 'mypage-profile', params: { id: '' } })
+        this.$router.push({ name: 'mypage-profile' })
       }
 
       if (values.type === 'Host') {
