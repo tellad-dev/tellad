@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Ad;
+use App\Models\Business;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 
-class AdsTableSeeder extends Seeder
+class BusinessesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,10 @@ class AdsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i = 1; $i <= 50; $i++) {
-            Ad::create([
-                'business_id' => $i,
-                'overview' => $faker->realText(),
+            Business::create([
+                'user_id' => $i,
+                'industory' => Arr::random(['不動産','広告業','IT企業']),
+                'business' => $faker->realText(),
                 'key' => $faker->md5(),
             ]);
         }

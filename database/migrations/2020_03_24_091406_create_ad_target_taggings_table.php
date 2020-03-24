@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdFormsTable extends Migration
+class CreateAdTargetTaggingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,22 @@ class CreateAdFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ad_forms', function (Blueprint $table) {
+        Schema::create('ad_target_taggings', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('ad_id')->comment('広告ID');
-            $table->string('form')->comment('広告形態');
+            $table->unsignedInteger('ad_id');
+            $table->unsignedInteger('target_id');
             $table->timestamps();
             $table->string('key', 32)->unique();
 
             $table->foreign('ad_id')
             ->references('id')
             ->on('ads')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            
+            $table->foreign('target_id')
+            ->references('id')
+            ->on('targets')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
@@ -35,6 +41,6 @@ class CreateAdFormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_forms');
+        Schema::dropIfExists('ad_target_taggings');
     }
 }

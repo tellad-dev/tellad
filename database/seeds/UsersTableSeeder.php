@@ -1,20 +1,25 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Faker\Generator as Faker;
  
 class UsersTableSeeder extends Seeder
 {
-    public function run()
+    public function run(Faker $faker)
     {
-        DB::table('users')->insert([
-            [
-                'name' => 'admin',
-                'email' => 'admin@example.com',
-                'password' => bcrypt('password'),
-                'remember_token' => null,
-                'created_at' => '2018-10-02 14:28:19',
-                'updated_at' => '2018-10-02 14:28:19'
-            ]
-        ]);
+        for ($i = 1; $i <= 50; $i++) {
+            User::create([
+            'name' => $faker->name,
+            'email' => $faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'status' => Arr::random([0,1]),
+            'remember_token' => Str::random(10),
+            'key' => $faker->md5(),
+            ]);
+        }
     }
 }

@@ -20,8 +20,10 @@ class SpacesTableSeeder extends Seeder
                 'shop_id' => $i,
                 'location' => Arr::random(['カウンター上','入り口扉','レジ横']),
                 'overview' => $faker->realText(),
+                'monthly_price' => Arr::random([1000,2000,3000,4000,5000]),
                 'receiving' => Arr::random([1,2,3,4,5]),
                 'receiving_limit' => 5,
+                'key' => $faker->md5(),
             ]);
         }
     }

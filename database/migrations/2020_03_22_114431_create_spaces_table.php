@@ -17,12 +17,27 @@ class CreateSpacesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザーID');
             $table->unsignedInteger('shop_id')->comment('店舗ID');
+            $table->string('name')->nullable()->comment('スペース名');
             $table->string('location')->nullable()->comment('設置場所');
             $table->string('overview')->nullable()->comment('設置概要');
-            $table->string('receiving')->nullable()->comment('受入数');
-            $table->string('receiving_limit')->nullable()->comment('受入上限');
+            $table->string('receiving')->default(0)->comment('受入数');
+            $table->string('receiving_limit')->default(1)->comment('受入上限');
+            $table->string('monthly_price')->comment('月額');
             $table->softDeletes();
             $table->timestamps();
+            $table->string('key', 32)->unique();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('shop_id')
+            ->references('id')
+            ->on('shops')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 
