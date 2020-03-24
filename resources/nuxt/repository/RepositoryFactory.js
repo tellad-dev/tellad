@@ -1,8 +1,6 @@
-import userRepository from './UserRepository'
 import authRepository from './AuthRepository'
 
 const repositories = {
-  user: userRepository,
   auth: authRepository,
 }
 
