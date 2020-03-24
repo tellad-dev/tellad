@@ -4,7 +4,7 @@
       <h1 class="page-title">店舗詳細</h1>
     </section>
 
-    <div class="shops grey lighten-4">
+    <div class="shop grey lighten-4">
       <v-card class="mx-auto shop-card">
         <section class="page-top">
           <div class>
@@ -23,7 +23,7 @@
         </section>
 
         <v-row justify="center" no-gutters>
-          <FormulateForm v-model="formValues" class="signup-form" @submit="save">
+          <FormulateForm v-model="formValues" class="shop-form" @submit="save">
             <!-- <FormulateInput name="name" type="text" label="Your name" placeholder="Your name" validation="required" /> -->
             <FormulateInput name="name" type="text" label="店舗名" placeholder="店舗名" validation="required" />
             <FormulateInput name="url" type="text" label="店舗URL" placeholder="URL" validation="required" />
@@ -116,18 +116,18 @@ export default {
 </script>
 
 <style scoped>
-.signup {
+.shop {
   height: 100%;
   padding: 68px 0;
 }
 
-.signup .signup-card {
+.shop .shop-card {
   width: 550px;
   margin-top: 20px;
   padding: 30px 48px;
 }
 
-.signup-form {
+.shop-form {
   padding: 2em;
   /* border: 1px solid #a8a8a8;
   border-radius: 0.5em; */
@@ -137,7 +137,7 @@ export default {
 .form-title {
   margin-top: 0;
 }
-.signup::v-deep .formulate-input .formulate-input-element {
+.shop::v-deep .formulate-input .formulate-input-element {
   max-width: none;
 }
 .submit-button {

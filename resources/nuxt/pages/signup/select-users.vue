@@ -1,15 +1,14 @@
 <template>
-  <signup-template @submit="submitSignup" />
+  <select-users-template @submit="updateUsers" />
 </template>
 
 <script>
 export default {
   components: {
-    SignupTemplate: () => import('~/components/templates/SignupTemplate'),
+    SelectUsersTemplate: () => import('~/components/templates/SelectUsersTemplate'),
   },
-
   methods: {
-    async submitSignup(values) {
+    async updateUsers(values) {
       // await authStore
       // .signUp({ email: values.email, password: values.password })
       //   .then(() => {
@@ -22,9 +21,18 @@ export default {
       //   .finally(() => {
       //     //
       //   })
-      await console.log('formValues', values)
-      this.$router.push({ name: 'signup-select-user' })
+      await console.log(values)
+
+      if (values.type === 'Guest') {
+        this.$router.push({ name: 'mypage-profile' })
+      }
+
+      if (values.type === 'Host') {
+        this.$router.push({ name: 'mypage' })
+      }
     },
   },
 }
 </script>
+
+<style scoped></style>

@@ -21,67 +21,67 @@
           マイページ
         </v-btn>
       </template>
-      <v-navigation-drawer permanent>
-        <v-system-bar />
-        <v-list>
-          <!-- <v-list-item>
+      <!-- <v-navigation-drawer permanent>
+        <v-system-bar /> -->
+      <v-list>
+        <!-- <v-list-item>
             <v-list-item-avatar>
               <v-img src="https://cdn.vuetifyjs.com/images/john.png" />
             </v-list-item-avatar>
           </v-list-item> -->
 
-          <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-title class="title">MIchihiro Doi</v-list-item-title>
-              <v-list-item-subtitle>aaaaa@tellad.jp</v-list-item-subtitle>
-            </v-list-item-content>
+        <v-list-item link>
+          <v-list-item-content>
+            <v-list-item-title class="title">MIchihiro Doi</v-list-item-title>
+            <v-list-item-subtitle>aaaaa@tellad.jp</v-list-item-subtitle>
+          </v-list-item-content>
 
-            <v-list-item-action>
-              <v-icon>mdi-menu-down</v-icon>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
+          <v-list-item-action>
+            <v-icon>mdi-menu-down</v-icon>
+          </v-list-item-action>
+        </v-list-item>
+        <!-- </v-list> -->
         <v-divider />
-        <v-list nav dense>
-          <v-list-item-group v-model="item" color="primary">
-            <v-list-item v-for="(item, i) in items" :key="`user${i}`" @click="$router.push({ name: item.url })">
-              <!-- <v-list-item-icon>
+        <!-- <v-list nav dense> -->
+        <v-list-item-group v-model="item" color="primary">
+          <v-list-item v-for="(item, i) in items" :key="`user${i}`" @click="$router.push({ name: item.url })">
+            <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
 
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title" />
-              </v-list-item-content>
-            </v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="ml-1">ゲスト</v-list-item-title>
+              <v-list-item-title v-text="item.title" />
             </v-list-item-content>
-            <v-divider />
-            <v-list-item v-for="(item, i) in guestItems" :key="`guest${i}`" @click="$router.push({ name: item.url })">
-              <!-- <v-list-item-icon>
+          </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="ml-1">ゲスト</v-list-item-title>
+          </v-list-item-content>
+          <v-divider />
+          <v-list-item v-for="(item, i) in guestItems" :key="`guest${i}`" @click="$router.push({ name: item.url })">
+            <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
 
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title" />
-              </v-list-item-content>
-            </v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="ml-1">ホスト</v-list-item-title>
+              <v-list-item-title v-text="item.title" />
             </v-list-item-content>
-            <v-divider />
-            <v-list-item v-for="(item, i) in hostItems" :key="`host${i}`" @click="$router.push({ name: item.url })">
-              <!-- <v-list-item-icon>
+          </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="ml-1">ホスト</v-list-item-title>
+          </v-list-item-content>
+          <v-divider />
+          <v-list-item v-for="(item, i) in hostItems" :key="`host${i}`" @click="$router.push({ name: item.url })">
+            <!-- <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon> -->
 
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title" />
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+      <!-- </v-navigation-drawer> -->
       <!-- <v-list>
         <v-list-item v-for="(item, index) in items" :key="index" @click="$router.push({ name: item.title })">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -130,7 +130,7 @@ export default {
       },
       {
         title: '広告の登録',
-        url: 'mypage-ads-registration',
+        url: 'mypage-ads-id',
       },
     ],
     hostItems: [
@@ -140,7 +140,7 @@ export default {
       },
       {
         title: 'スペースの登録',
-        url: 'mypage-spaces-registration',
+        url: 'mypage-spaces-id',
       },
     ],
   }),

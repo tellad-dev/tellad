@@ -1,11 +1,11 @@
 <template>
   <div>
     <section class="page-top">
-      <h1 class="page-title">店舗詳細</h1>
+      <h1 class="page-title">スペース詳細</h1>
     </section>
 
-    <div class="ad grey lighten-4">
-      <v-card class="mx-auto ad-card">
+    <div class="space grey lighten-4">
+      <v-card class="mx-auto space-card">
         <section class="page-top">
           <div class>
             <v-carousel cycle height="600px" hide-delimiters hide-delimiter-background :show-arrows="false">
@@ -23,7 +23,7 @@
         </section>
 
         <v-row justify="center" no-gutters>
-          <FormulateForm v-model="formValues" class="ad-form" @submit="save">
+          <FormulateForm v-model="formValues" class="space-form" @submit="save">
             <!-- <FormulateInput name="name" type="text" label="Your name" placeholder="Your name" validation="required" /> -->
             <FormulateInput name="name" type="text" label="店舗名" placeholder="店舗名" validation="required" />
             <FormulateInput name="url" type="text" label="店舗URL" placeholder="URL" validation="required" />
@@ -116,18 +116,18 @@ export default {
 </script>
 
 <style scoped>
-.ad {
+.space {
   height: 100%;
   padding: 68px 0;
 }
 
-.ad .ad-card {
+.space .space-card {
   width: 550px;
   margin-top: 20px;
   padding: 30px 48px;
 }
 
-.ad-form {
+.space-form {
   padding: 2em;
   /* border: 1px solid #a8a8a8;
   border-radius: 0.5em; */
@@ -137,7 +137,7 @@ export default {
 .form-title {
   margin-top: 0;
 }
-.ad::v-deep .formulate-input .formulate-input-element {
+.space::v-deep .formulate-input .formulate-input-element {
   max-width: none;
 }
 .submit-button {
