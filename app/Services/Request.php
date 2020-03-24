@@ -19,21 +19,21 @@ class Request {
   public function saves($model, array $requests)
   {
       $requests = ArrayUtil::snakelizeKey($requests);
-      $newMenus = [];
+      $newRequests = [];
 
       DB::transaction(function () use ($model, $requests) {
-          $model->menus()->delete();
+          $model->request()->delete();
           foreach ($requests as $request) {
               $attributes = [
                 // 例
                   'key'       => $this->createKey(),
                   'name'      => $request['name'] ?? null,
               ];
-              $newMenus[] = $model->menus()->create($attributes);
+              $newRequests[] = $model->request()->create($attributes);
           }
       });
 
-      return $newMenus;
+      return $newRequests;
   }
 
   // ポリモーフィズムで create するため model を使う
