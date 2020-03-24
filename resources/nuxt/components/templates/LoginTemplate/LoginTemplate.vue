@@ -23,9 +23,6 @@
 </template>
 
 <script>
-import { RepositoryFactory } from '~/repository/RepositoryFactory.js'
-const AuthRepository = RepositoryFactory.get('auth')
-
 export default {
   data: () => ({
     email: '',
@@ -33,16 +30,17 @@ export default {
   }),
   methods: {
     async login() {
-      const response = await AuthRepository.login({
-        /* something form data */
+      await this.$store.dispatch('auth/signup', {
         email: this.email,
         password: this.password,
       })
-      if (response.data.success) {
-        this._sendSuccess(response)
+      if (!window.localStorage) {
+        alert('お使いのブラウザはlocalstorageに対応してません。')
       } else {
-        this._sendError(response.data.message)
+        alert('お使いのブラウザはlocalstorageに対応しています。')
       }
+      // トップページに移動する
+      this.$router.push('/')
     },
   },
 }
