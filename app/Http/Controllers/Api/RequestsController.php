@@ -2,8 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
+
+// Component
+use ApiResponseBuilder;
+use RequestResponseBuilder;
+
+// Request
+use App\Http\Requests\RequestPost;
+
+// Model
+use RequestModel;
+
+// Service
+use RequestService;
+
 
 class RequestsController extends Controller
 {
@@ -67,9 +83,23 @@ class RequestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestPost $request, string $key): JsonResponse
     {
-        //
+        try {
+            RequestModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('request', $key);
+        }
+
+        $request['key'] = $key;
+        try {
+            $request = RequestService::save($request);
+        } catch (\Exception $e) {
+            logger()->error('Request update error', ['error' => $e]);
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(RequestResponseBuilder::formatData($request));
     }
 
     /**

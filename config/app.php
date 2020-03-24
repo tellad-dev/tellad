@@ -237,12 +237,15 @@ return [
         'App\Facades\Components\ArrayUtil',
         'ApiResponseBuilder'  =>
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
-
+        'RequestResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\RequestResponseBuilder',
         // Model
         'UserModel' => 'App\Facades\Models\User',
+        'RequestModel' => 'App\Facades\Models\User',
 
         // Service
         'UserService' => 'App\Facades\Services\User',
+        'RequestService' => 'App\Facades\Services\Request'
     ],
 
 ];

@@ -28,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Components\ResponseBuilder\ApiResponseBuilder');
         });
 
+        $this->app->bind('RequestResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\RequestResponseBuilder');
+        });
+
 
         /*
         |
@@ -40,6 +44,10 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Models\User');
         });
 
+        $this->app->bind('requestModel', function(){
+            return app('App\Models\Request');
+        });
+
 
         /*
         |
@@ -50,6 +58,10 @@ class AppServiceProvider extends ServiceProvider
         */
         $this->app->bind('userService', function(){
             return app('App\Services\User');
+        });
+
+        $this->app->bind('requestService', function(){
+            return app('App\Services\Request');
         });
     }
 
