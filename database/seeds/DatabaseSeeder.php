@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             AdsTableSeeder::class,
             ShopsTableSeeder::class,
             SpacesTableSeeder::class,
-            RequestsTableSeeder::class,
+            AdRequestsTableSeeder::class,
             AdFormsTableSeeder::class,
             CustomerFeaturesTableSeeder::class,
             ShopFeaturesTableSeeder::class,

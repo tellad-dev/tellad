@@ -8,9 +8,9 @@ use App\Traits\{CreateKey, FindByKey};
 
 use ArrayUtil;
 
-use RequestModel;
+use AdRequestModel;
 
-class Request {
+class AdRequest {
 
   use CreateKey;
   use FindByKey;
