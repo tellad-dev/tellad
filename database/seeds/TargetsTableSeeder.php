@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\CustomerFeature;
+use App\Models\Target;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 
-class CustomerFeaturesTableSeeder extends Seeder
+class TargetsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class CustomerFeaturesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i = 1; $i <= 3; $i++) {
-            CustomerFeature::create([
-                'customer_feature' => Arr::random(['カップル','ファミリー','ご年配']),
+            Target::create([
+                'target' => Arr::random(['駅近','カップル','オフィス街']),
                 'key' => $faker->md5(),
             ]);
         }

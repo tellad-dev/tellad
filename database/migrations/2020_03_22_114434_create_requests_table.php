@@ -25,6 +25,7 @@ class CreateRequestsTable extends Migration
             $table->integer('status')->default(0)->comment('リクエスト状況');
             $table->text('message')->nullable()->comment('メッセージ');
             $table->timestamps();
+            $table->string('key', 32)->unique();
 
             $table->foreign('space_id')
             ->references('id')

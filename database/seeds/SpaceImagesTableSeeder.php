@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\CustomerFeature;
+use App\Models\SpaceImage;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 
-class CustomerFeaturesTableSeeder extends Seeder
+class SpaceImagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,10 @@ class CustomerFeaturesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 1; $i <= 3; $i++) {
-            CustomerFeature::create([
-                'customer_feature' => Arr::random(['カップル','ファミリー','ご年配']),
+        for ($i = 1; $i <= 50; $i++) {
+            SpaceImage::create([
+                'space_id' => $i,
+                'path' => 'S3_BUCKET_NAME'.$i,
                 'key' => $faker->md5(),
             ]);
         }

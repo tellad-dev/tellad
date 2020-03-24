@@ -20,8 +20,11 @@ class ProfilesTableSeeder extends Seeder
                 'phone' => $faker->phoneNumber,
                 'company' => $faker->company,
                 'url' => $faker->url,
-                'industory' => Arr::random(['不動産','小売業','地域コミュニティ']),
-                'bussines' => $faker->realText(),
+                'postcode' => $faker->postcode(),
+                'prefecture' => $faker->prefecture(),
+                'city' => $faker->city(),
+                'block' => $faker->streetAddress(),
+                'key' => $faker->md5(),
             ]);
         }
     }

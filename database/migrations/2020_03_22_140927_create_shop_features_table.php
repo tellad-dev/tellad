@@ -15,9 +15,9 @@ class CreateShopFeaturesTable extends Migration
     {
         Schema::create('shop_features', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('shop_featureable');
-            $table->string('shop_feature')->comment('店舗の特徴');
+            $table->string('shop_feature')->comment('店舗特徴');
             $table->timestamps();
+            $table->string('key', 32)->unique();
         });
     }
 

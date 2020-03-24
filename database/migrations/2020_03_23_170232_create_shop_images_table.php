@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdsTable extends Migration
+class CreateShopImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateAdsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ads', function (Blueprint $table) {
+        Schema::create('shop_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->comment('ユーザーID');
-            $table->text('overview')->nullable()->comment('広告概要');
-            $table->softDeletes();
+            $table->unsignedInteger('shop_id')->comment('店舗ID');
+            $table->string('path')->comment('画像パス');
             $table->timestamps();
+            $table->string('key', 32)->unique();
 
-            $table->foreign('user_id')
+            $table->foreign('shop_id')
             ->references('id')
-            ->on('users')
+            ->on('shops')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
@@ -35,6 +35,6 @@ class CreateAdsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ads');
+        Schema::dropIfExists('shop_images');
     }
 }

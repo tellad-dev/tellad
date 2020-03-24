@@ -15,9 +15,9 @@ class CreateCustomerFeaturesTable extends Migration
     {
         Schema::create('customer_features', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('customer_featureable');
-            $table->string('customer_feature')->comment('顧客の特徴');
+            $table->string('customer_feature')->comment('顧客特徴');
             $table->timestamps();
+            $table->string('key', 32)->unique();
         });
     }
 

@@ -25,6 +25,7 @@ class RequestsTableSeeder extends Seeder
                 'span' => Arr::random(['1ヶ月','2ヶ月','3ヶ月']),
                 'status' => Arr::random([0,1,2,3,4]),
                 'message' => $faker->realText,
+                'key' => $faker->md5(),
             ]);
         }
     }
