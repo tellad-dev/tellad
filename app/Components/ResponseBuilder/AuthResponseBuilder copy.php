@@ -13,7 +13,7 @@ use ApiResponseBuilder;
 use UserModel;
 
 
-class Auth 
+class AuthResponseBuilder
 {
   /**
    * Dataを整形する
