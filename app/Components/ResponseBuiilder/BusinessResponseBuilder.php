@@ -10,9 +10,9 @@ use ArrayUtil;
 use ApiResponseBuilder;
 
 // Model
-use AdRequestModel;
+use BusinessModel;
 
-class AdRequest
+class Business
 {
     /**
      * メニューのDataListを作成する

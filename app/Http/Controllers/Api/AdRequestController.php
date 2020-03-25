@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
-use RequestResponseBuilder;
+use AdRequestResponseBuilder;
 
 // Request
 use App\Http\Requests\AdRequestPost;

@@ -32,6 +32,30 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Components\ResponseBuilder\AdRequestResponseBuilder');
         });
 
+        $this->app->bind('authResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\AuthResponseBuilder');
+        });
+
+        $this->app->bind('profileResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\ProfileResponseBuilder');
+        });
+
+        $this->app->bind('businessResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\BusinessResponseBuilder');
+        });
+
+        $this->app->bind('adResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\AdResponseBuilder');
+        });
+
+        $this->app->bind('ShopResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\ShopResponseBuilder');
+        });
+
+        $this->app->bind('spaceResponseBuilder', function(){
+            return app('App\Components\ResponseBuilder\SpaceResponseBuilder');
+        });
+
 
         /*
         |
@@ -103,7 +127,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('spaceService', function(){
         return app('App\Services\Space');
         });
-        
+
         $this->app->bind('requestService', function(){
         return app('App\Services\Request');
         });

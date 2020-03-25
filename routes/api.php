@@ -22,6 +22,12 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::get("/me", "AuthController@me");
     Route::post('/logout', 'AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
-    //Users REST API
+    //REST API
     Route::resource('users', 'Api\UserController');
+    Route::resource('adrequests', 'Api\UserController');
+    Route::resource('profiles', 'Api\ProfileController');
+    Route::resource('businesses', 'Api\BusinessController');
+    Route::resource('ads', 'Api\AdController');
+    Route::resource('shops', 'Api\ShopController');
+    Route::resource('spaces', 'Api\SpaceController');
 });

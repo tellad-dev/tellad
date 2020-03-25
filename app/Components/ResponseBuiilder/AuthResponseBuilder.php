@@ -3,6 +3,11 @@
 namespace App\Components\ResponseBuilder;
 
 use Illuminate\Http\{Response, JsonResponse};
+use Illuminate\Database\Eloquent\Collection;
+
+// Component
+use ArrayUtil;
+use ApiResponseBuilder;
 
 // Model
 use UserModel;

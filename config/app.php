@@ -239,6 +239,18 @@ return [
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
         'AdRequestResponseBuilder' =>
         'App\Facades\Components\ResponseBuilder\AdRequestResponseBuilder',
+        'AuthResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AuthResponseBuilder',
+        'ProfileResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\ProfileResponseBuilder',
+        'BusinessResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\BusinessResponseBuilder',
+        'AdResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AdResponseBuilder',
+        'ShopResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\ShopResponseBuilder',
+        'SpaceResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\SpaceResponseBuilder',
         // Model
         'UserModel' => 'App\Facades\Models\User',
         'AdRequestModel' => 'App\Facades\Models\AdRequest',
