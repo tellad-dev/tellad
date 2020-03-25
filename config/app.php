@@ -242,10 +242,20 @@ return [
         // Model
         'UserModel' => 'App\Facades\Models\User',
         'AdRequestModel' => 'App\Facades\Models\AdRequest',
+        'ProfileModel' => 'App\Facades\Models\Profile',
+        'BusinessModel' => 'App\Facades\Models\Business',
+        'AdModel' => 'App\Facades\Models\Ad',
+        'ShopModel' => 'App\Facades\Models\Shop',
+        'SpaceModel' => 'App\Facades\Models\Space',
 
         // Service
         'UserService' => 'App\Facades\Services\User',
-        'AdRequestService' => 'App\Facades\Services\AdRequest'
+        'AdRequestService' => 'App\Facades\Services\AdRequest',
+        'ProfileServices' => 'App\Facades\Services\Profile',
+        'BusinessServices' => 'App\Facades\Services\Business',
+        'AdServices' => 'App\Facades\Services\Ad',
+        'ShopServices' => 'App\Facades\Services\Shop',
+        'SpaceServices' => 'App\Facades\Services\Space',
     ],
 
 ];
