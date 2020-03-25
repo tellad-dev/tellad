@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use RequestResponseBuilder;
+
+// Request
+use App\Http\Requests\AdRequestPost;
 
 // Model
 use AdRequestModel;
@@ -16,7 +20,8 @@ use AdRequestModel;
 // Service
 use AdRequestService;
 
-class AdRequestController extends Controller
+
+class AdRequestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -78,9 +83,23 @@ class AdRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdRequestPost $request, string $key): JsonResponse
     {
-        //
+        try {
+            AdRequestModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('request', $key);
+        }
+
+        $request['key'] = $key;
+        try {
+            $request = AdRequestService::save($request);
+        } catch (\Exception $e) {
+            logger()->error('Request update error', ['error' => $e]);
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($request));
     }
 
     /**

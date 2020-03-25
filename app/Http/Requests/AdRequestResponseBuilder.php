@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\ApiRequest;
 
-class RequestPost extends ApiRequest
+class AdRequestPost extends ApiRequest
 {
     public function __construct()
     {

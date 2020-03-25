@@ -241,11 +241,11 @@ return [
         'App\Facades\Components\ResponseBuilder\RequestResponseBuilder',
         // Model
         'UserModel' => 'App\Facades\Models\User',
-        'RequestModel' => 'App\Facades\Models\User',
+        'AdRequestModel' => 'App\Facades\Models\AdRequest',
 
         // Service
         'UserService' => 'App\Facades\Services\User',
-        'RequestService' => 'App\Facades\Services\Request'
+        'AdRequestService' => 'App\Facades\Services\AdRequest'
     ],
 
 ];
