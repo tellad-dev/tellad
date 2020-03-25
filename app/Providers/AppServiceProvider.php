@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Components\ResponseBuilder\ApiResponseBuilder');
         });
 
-        $this->app->bind('RequestResponseBuilder', function(){
+        $this->app->bind('adRequestResponseBuilder', function(){
             return app('App\Components\ResponseBuilder\AdRequestResponseBuilder');
         });
 
@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Models\User');
         });
 
-        $this->app->bind('requestModel', function(){
+        $this->app->bind('adRequestModel', function(){
             return app('App\Models\AdRequest');
         });
 
@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
             return app('App\Services\User');
         });
 
-        $this->app->bind('requestService', function(){
+        $this->app->bind('adRequestService', function(){
             return app('App\Services\AdRequest');
         });
     }

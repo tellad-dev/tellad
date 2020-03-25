@@ -237,8 +237,8 @@ return [
         'App\Facades\Components\ArrayUtil',
         'ApiResponseBuilder'  =>
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
-        'RequestResponseBuilder' =>
-        'App\Facades\Components\ResponseBuilder\RequestResponseBuilder',
+        'AdRequestResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AdRequestResponseBuilder',
         // Model
         'UserModel' => 'App\Facades\Models\User',
         'AdRequestModel' => 'App\Facades\Models\AdRequest',
