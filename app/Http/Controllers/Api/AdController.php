@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
 
-class SpacesController extends Controller
+// Component
+use ApiResponseBuilder;
+
+// Model
+use AdModel;
+
+// Service
+use AdService;
+
+class AdController extends Controller
 {
     /**
      * Display a listing of the resource.

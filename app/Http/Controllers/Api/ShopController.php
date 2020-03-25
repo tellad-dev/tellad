@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
 
-class ShopsController extends Controller
+// Component
+use ApiResponseBuilder;
+
+// Model
+use ShopModel;
+
+// Service
+use ShopService;
+
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +44,7 @@ class ShopsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, string $key): JsonResponse
     {
         //
     }
