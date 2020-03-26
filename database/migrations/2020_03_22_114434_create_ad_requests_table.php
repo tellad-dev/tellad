@@ -15,10 +15,9 @@ class CreateAdRequestsTable extends Migration
     {
         Schema::create('ad_requests', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->comment('ユーザーID（送信者)');
             $table->unsignedInteger('space_id')->comment('スペースID');
             $table->unsignedInteger('ad_id')->comment('広告ID');
-            $table->unsignedInteger('sender_id')->comment('送信者ID');
-            $table->unsignedInteger('receiver_id')->comment('受信者ID');
             $table->date('start_date')->nullable()->comment('希望日時');
             $table->integer('order_price')->nullable()->comment('注文価格');
             $table->string('span')->nullable()->comment('掲載期間');
@@ -27,6 +26,12 @@ class CreateAdRequestsTable extends Migration
             $table->timestamps();
             $table->string('key', 32)->unique();
 
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            
             $table->foreign('space_id')
             ->references('id')
             ->on('spaces')
@@ -39,17 +44,6 @@ class CreateAdRequestsTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
             
-            $table->foreign('sender_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            
-            $table->foreign('receiver_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
         });
     }
 

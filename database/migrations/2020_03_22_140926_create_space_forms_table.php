@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpacesTable extends Migration
+class CreateSpaceFormsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateSpacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('spaces', function (Blueprint $table) {
+        Schema::create('space_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('shop_id')->comment('店舗ID');
-            $table->string('name')->nullable()->comment('スペース名');
-            $table->string('location')->nullable()->comment('設置場所');
-            $table->string('overview')->nullable()->comment('設置概要');
-            $table->softDeletes();
+            $table->unsignedInteger('space_id')->comment('広告ID');
+            $table->string('form')->comment('広告形態');
+            $table->string('receiving')->default(0)->comment('受入数');
+            $table->string('receiving_limit')->default(1)->comment('受入上限');
+            $table->integer('price')->comment('金額');
             $table->timestamps();
             $table->string('key', 32)->unique();
 
-            $table->foreign('shop_id')
+            $table->foreign('space_id')
             ->references('id')
-            ->on('shops')
+            ->on('spaces')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
@@ -38,6 +38,6 @@ class CreateSpacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spaces');
+        Schema::dropIfExists('ad_forms');
     }
 }
