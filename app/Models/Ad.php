@@ -10,9 +10,9 @@ class Ad extends Model
     {
         return $this->belongsTo(Business::class);
     }
-    public function requests()
+    public function adRequests()
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(adRequest::class);
     }
     public function adImages()
     {
@@ -21,5 +21,9 @@ class Ad extends Model
     public function adForms()
     {
         return $this->hasMany(AdForm::class);
+    }
+    public function targets()
+    {
+        return $this->belongsToMany(Target::class,'ad_target_taggings','target_id','ad_id');
     }
 }

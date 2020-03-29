@@ -11,13 +11,13 @@ class Space extends Model
         return $this->belongsTo(Shop::class);
     }
 
-    public function adForm()
+    public function spaceForms()
     {
-        return $this->hasOne(AdForm::class);
+        return $this->hasMany(SpaceForm::class);
     }
 
-    public function spaceImage()
+    public function spaceImages()
     {
-        return $this->hasOne(SpaceImage::class);
+        return $this->hasMany(SpaceImage::class);
     }
 }

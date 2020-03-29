@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdForm extends Model
 {
-    public function space()
+    public function ad()
     {
-        return $this->belongsTo(Space::class);
+        return $this->belongsTo(Ad::class);
     }
 }
