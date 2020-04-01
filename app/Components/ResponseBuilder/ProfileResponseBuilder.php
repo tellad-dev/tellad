@@ -12,7 +12,7 @@ use ApiResponseBuilder;
 // Model
 use ProfileModel;
 
-class Profile
+class ProfileResponseBuilder
 {
     /**
      * メニューのDataListを作成する

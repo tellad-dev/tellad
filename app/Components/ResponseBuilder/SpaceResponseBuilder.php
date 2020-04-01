@@ -12,7 +12,7 @@ use ApiResponseBuilder;
 // Model
 use SpaceModel;
 
-class Space
+class SpaceResponseBuilder
 {
     /**
      * メニューのDataListを作成する

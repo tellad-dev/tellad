@@ -12,7 +12,7 @@ use ApiResponseBuilder;
 // Model
 use BusinessModel;
 
-class Business
+class BusinessResponseBuilder
 {
     /**
      * メニューのDataListを作成する
@@ -36,14 +36,11 @@ class Business
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($request): ?array
+    public function formatData($user): ?array
     {
         try {
-            $requestData = [
-                'name'     => $request->name,
-                'value'    => $request->value,
-                'minPrice' => $request->min_price,
-                'maxPrice' => $request->max_price,
+            $businessData = [
+                'user'     => $user,
             ];
         }
         catch (\Exception $e) {
@@ -51,7 +48,7 @@ class Business
             return null;
         }
 
-        return $requestData;
+        return $businessData;
     }
 
     /**

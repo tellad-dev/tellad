@@ -12,7 +12,7 @@ use ApiResponseBuilder;
 // Model
 use ShopModel;
 
-class Shop
+class ShopResponseBuilder
 {
     /**
      * メニューのDataListを作成する
@@ -36,14 +36,11 @@ class Shop
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($request): ?array
+    public function formatData($user)
     {
         try {
-            $requestData = [
-                'name'     => $request->name,
-                'value'    => $request->value,
-                'minPrice' => $request->min_price,
-                'maxPrice' => $request->max_price,
+            $shopData = [
+                'user'      => $user,
             ];
         }
         catch (\Exception $e) {
@@ -51,7 +48,7 @@ class Shop
             return null;
         }
 
-        return $requestData;
+        return $shopData;
     }
 
     /**

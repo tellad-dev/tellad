@@ -12,7 +12,7 @@ use ApiResponseBuilder;
 // Model
 use AdRequestModel;
 
-class AdRequest
+class AdRequestResponseBuilder
 {
     /**
      * メニューのDataListを作成する
