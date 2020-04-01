@@ -10,8 +10,8 @@ class Business extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function spaces()
+    public function ads()
     {
-        return $this->hasMany(Space::class);
+        return $this->hasMany(Ad::class);
     }
 }

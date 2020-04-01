@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
-    public function businnes()
+    public function businness()
     {
         return $this->belongsTo(Business::class);
     }
