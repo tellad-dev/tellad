@@ -237,10 +237,12 @@ return [
         'App\Facades\Components\ArrayUtil',
         'ApiResponseBuilder'  =>
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
-        'AdRequestResponseBuilder' =>
-        'App\Facades\Components\ResponseBuilder\AdRequestResponseBuilder',
         'AuthResponseBuilder' =>
         'App\Facades\Components\ResponseBuilder\AuthResponseBuilder',
+        'UserResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\UserResponseBuilder',
+        'AdRequestResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AdRequestResponseBuilder',
         'ProfileResponseBuilder' =>
         'App\Facades\Components\ResponseBuilder\ProfileResponseBuilder',
         'BusinessResponseBuilder' =>
@@ -263,11 +265,11 @@ return [
         // Service
         'UserService' => 'App\Facades\Services\User',
         'AdRequestService' => 'App\Facades\Services\AdRequest',
-        'ProfileServices' => 'App\Facades\Services\Profile',
-        'BusinessServices' => 'App\Facades\Services\Business',
-        'AdServices' => 'App\Facades\Services\Ad',
-        'ShopServices' => 'App\Facades\Services\Shop',
-        'SpaceServices' => 'App\Facades\Services\Space',
+        'ProfileService' => 'App\Facades\Services\Profile',
+        'BusinessService' => 'App\Facades\Services\Business',
+        'AdService' => 'App\Facades\Services\Ad',
+        'ShopService' => 'App\Facades\Services\Shop',
+        'SpaceService' => 'App\Facades\Services\Space',
     ],
 
 ];
