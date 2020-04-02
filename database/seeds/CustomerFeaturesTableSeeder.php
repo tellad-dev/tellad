@@ -17,7 +17,7 @@ class CustomerFeaturesTableSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             CustomerFeature::create([
                 'customer_feature' => Arr::random(['カップル','ファミリー','ご年配']),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

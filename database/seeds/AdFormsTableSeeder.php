@@ -18,7 +18,7 @@ class AdFormsTableSeeder extends Seeder
             AdForm::create([
                 'ad_id' => $i,
                 'form' => Arr::random(['A3広告','ポップアップスタンド','A4広告']),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

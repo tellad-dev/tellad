@@ -17,7 +17,7 @@ class CreateCustomerFeaturesTable extends Migration
             $table->increments('id');
             $table->string('customer_feature')->comment('顧客特徴');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
         });
     }
 

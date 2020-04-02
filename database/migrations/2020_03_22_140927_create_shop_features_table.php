@@ -17,7 +17,7 @@ class CreateShopFeaturesTable extends Migration
             $table->increments('id');
             $table->string('shop_feature')->comment('店舗特徴');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
         });
     }
 

@@ -18,7 +18,7 @@ class AdTargetTaggingsTableSeeder extends Seeder
             AdTargetTagging::create([
                 'ad_id' => $i,
                 'target_id' => Arr::random([1,2,3]),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

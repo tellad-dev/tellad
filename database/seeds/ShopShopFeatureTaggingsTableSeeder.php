@@ -18,7 +18,7 @@ class ShopShopFeatureTaggingsTableSeeder extends Seeder
             ShopShopFeatureTagging::create([
                 'shop_id' => $i,
                 'shop_feature_id' => Arr::random([1,2,3]),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

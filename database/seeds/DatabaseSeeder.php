@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             SpacesTableSeeder::class,
             AdRequestsTableSeeder::class,
             AdFormsTableSeeder::class,
+            SpaceFormsTableSeeder::class,
             CustomerFeaturesTableSeeder::class,
             ShopFeaturesTableSeeder::class,
             AdImagesTableSeeder::class,

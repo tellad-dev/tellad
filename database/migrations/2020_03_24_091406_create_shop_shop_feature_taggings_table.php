@@ -18,7 +18,7 @@ class CreateShopShopFeatureTaggingsTable extends Migration
             $table->unsignedInteger('shop_id');
             $table->unsignedInteger('shop_feature_id');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('shop_id')
             ->references('id')

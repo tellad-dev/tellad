@@ -17,7 +17,7 @@ class CreateTargetsTable extends Migration
             $table->increments('id');
             $table->string('target')->comment('ターゲット');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
         });
     }
 
