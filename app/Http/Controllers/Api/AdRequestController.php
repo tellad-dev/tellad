@@ -21,7 +21,7 @@ use AdRequestModel;
 use AdRequestService;
 
 
-class AdRequestsController extends Controller
+class AdRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
