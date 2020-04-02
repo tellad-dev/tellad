@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'status' => Arr::random([0,1]),
             'remember_token' => Str::random(10),
             'key' => $faker->md5(),
+            'api_token' => $faker->md5(),
             ]);
         }
     }
