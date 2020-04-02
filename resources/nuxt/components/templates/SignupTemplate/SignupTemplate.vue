@@ -1,6 +1,8 @@
 <template>
-  <div class="signup grey lighten-4">
-    <signup-form @submit="$listeners['submit']" />
+  <div class="signup grey lighten-4" style="position: relative">
+    <section class="wrapper my-0">
+      <signup-form @submit="$listeners['submit']" />
+    </section>
   </div>
 </template>
 
@@ -15,6 +17,6 @@ export default {
 <style scoped>
 .signup {
   height: 100%;
-  padding: 68px 0;
+  padding: 68px 0 0 0;
 }
 </style>
