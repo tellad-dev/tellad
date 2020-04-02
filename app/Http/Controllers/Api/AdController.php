@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use AdResponseBuilder;
 
 // Model
 use AdModel;
@@ -55,9 +56,15 @@ class AdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $ad = AdModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('business', $key);
+        }
+        return ApiResponseBuilder::createResponse(AdResponseBuilder::formatData($ad));
     }
 
     /**
