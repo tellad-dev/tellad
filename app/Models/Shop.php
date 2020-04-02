@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
+    protected $guarded = ['id'];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -22,10 +23,12 @@ class Shop extends Model
     }
     public function shopFeatures()
     {
-        return $this->belongsToMany(ShopFeature::class,'shop_shop_feature_taggings','shop_feature_id','shop_id');
+        return $this->belongsToMany(ShopFeature::class,'shop_shop_feature_taggings','shop_id','shop_feature_id')
+                    ->withTimestamps();;
     }
     public function customerFeatures()
     {
-        return $this->belongsToMany(CustomerFeature::class,'shop_customer_feature_taggings','customer_feature_id','shop_id');
+        return $this->belongsToMany(CustomerFeature::class,'shop_customer_feature_taggings','shop_id','customer_feature_id')
+                    ->withTimestamps();
     }
 }
