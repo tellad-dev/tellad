@@ -20,10 +20,10 @@ use Illuminate\Http\Request;
     Route::post('/refresh', 'AuthController@refresh');
     //REST API
     Route::resource('users','Api\UserController');
-    Route::resource('users/{user}/profiles','Api\ProfileController');
+    Route::resource('profiles','Api\ProfileController');
     Route::resource('adrequests','Api\AdRequestController');
-    Route::resource('users/{user}/businesses','Api\BusinessController');
+    Route::resource('businesses','Api\BusinessController');
     Route::resource('ads','Api\AdController');
-    Route::resource('users/{user}/shops','Api\ShopController');
+    Route::resource('shops','Api\ShopController');
     Route::resource('spaces','Api\SpaceController');
     Route::resource('spaceforms','Api\SpaceFormController');
