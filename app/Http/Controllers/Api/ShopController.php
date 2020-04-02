@@ -9,12 +9,18 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use ShopResponseBuilder;
 
 // Model
 use ShopModel;
+use UserModel;
+use SpaceModel;
 
 // Service
+use UserService;
 use ShopService;
+use ShopFeaturesService;
+use CustomerFeaturesService;
 
 class ShopController extends Controller
 {
@@ -23,7 +29,7 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
     }
@@ -44,9 +50,15 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, string $key): JsonResponse
+    public function store(Request $request)
     {
-        //
+        try {
+            $shop = ShopService::create($request);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(ShopResponseBuilder::formatData($shop));
     }
 
     /**
@@ -55,9 +67,18 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $shop = ShopModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::unauthorized();
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(ShopResponseBuilder::formatData($shop));
     }
 
     /**
@@ -78,9 +99,18 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $key)
     {
-        //
+        try {
+            $shop = ShopModel::where('key', $key)->firstOrFail();
+            $shop = ShopService::update($request,$key);
+            return $shop;
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('request', $key);
+        }
+
+        return ApiResponseBuilder::createResponse(ShopResponseBuilder::formatData($shop));
     }
 
     /**

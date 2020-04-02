@@ -36,18 +36,25 @@ class ShopResponseBuilder
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($user)
+    public function formatData($shop)
     {
         try {
+            $shop->shopImages;
+            $shop->shopFeatures;
+            $shop->customerFeatures;
+            foreach($shop->spaces as $space){
+                $space->spaceForms;
+                $space->spaceImages;
+                $space->adRequests;
+            };
             $shopData = [
-                'user'      => $user,
+                'shop'  => $shop
             ];
         }
         catch (\Exception $e) {
-            logger()->error('AdRequestResponseBuilder::formatData error.', ['error' => $e ]);
+            logger()->error('ShopResponseBuilder::formatData error.', ['error' => $e ]);
             return null;
         }
-
         return $shopData;
     }
 

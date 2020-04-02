@@ -9,58 +9,45 @@ use App\Traits\{CreateKey, FindByKey};
 use ArrayUtil;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use ShopModel;
+use UserModel;
+use ShopFeatureModel;
 
 class Shop
 {
   use CreateKey;
   use FindByKey;
-
   // singup時
-  public function create(array $param)
+  public function create($request)
   {
-    $param = ArrayUtil::snakelizeKey($param);
+    $shopInputs = $request['shop'];
+    $shopInputs['key']= $this->createKey();
+    $shopInputs['user_id'] = auth()->id();
+    $shop = ShopModel::create($shopInputs);
+    $shop->shopFeatures()->attach($request['shop_feature_id']);
+    $shop->customerFeatures()->attach($request['customer_feature_id']);
 
-    // TODO model編集後
-    $attributes = [
-
-    ];
-
-    $user = UserModel::where('email', $attributes['email'])->whereNotNull('email')->first();
-
-    if (is_null($user)){
-      $attributes['key'] = $this->createKey();
-      $user = UserModel::create($attributes);
-    }
-    else {
-      $user->update($attributes);
-    }
-
-    return $user;
+    return $shop;
   }
 
-  public function save(array $params)
+  public function update($request,$key)
   {
-    $params = ArrayUtil::snakelizeKey($params);
-
-    // TODO model編集後
-    $attributes = [
-      
-    ];
-
-    $user = UserModel::where('key', $params['key'])->first();
-
-    if (is_null($user)){
-      $attributes['key'] = $this->createKey();
-      $user = UserModel::create($attributes);
-    }
-    else {
-      $user->update($attributes);
-      $user->touch();
+    try {
+      $shop = ShopModel::where('key', $key)->first();
+      $shop = $shop->save($request['shop']);
+      return $shop;
+      $shop->shopFeatures()->sync($request['shop_feature_id']);
+      return $shop;
+      $shop->customerFeatures()->detach(); 
+      $shop->customerFeatures()->attach($request['customer_feature_id']);
+    } catch (ModelNotFoundException $e) {
+      logger()->error('ShopModel not found.', ['error' => $e]);
+      throw new \Exception('ShopModel を取得できなかった');
+    } catch (\Exception $e) {
+      logger()->error('ShopModel deleting is failed.', ['error' => $e]);
+      throw new \Exception('ShopModel を削除できなかった');
     }
 
-    // TODO ユーザーのタイプによって保存と削除処理
-
-    return $user;
+    return $shop;
   }
 
   public function delete(string $key)
