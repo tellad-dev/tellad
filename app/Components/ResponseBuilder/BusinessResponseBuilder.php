@@ -36,11 +36,17 @@ class BusinessResponseBuilder
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($user): ?array
+    public function formatData($business): ?array
     {
         try {
+            foreach($business->ads as $ad){
+                $ad->targets;
+                $ad->adImages;
+                $ad->adForms;
+                $ad->adRequests;
+            };
             $businessData = [
-                'user'     => $user,
+                'business'     => $business,
             ];
         }
         catch (\Exception $e) {

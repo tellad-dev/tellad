@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use BusinessResponseBuilder;
 
 // Model
 use BusinessModel;
@@ -23,9 +24,18 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        try {
+            $businessList = BusinessService::getBusinessList($id);
+          }
+          catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::unauthorized();
+          }
+          catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+          }
+          return ApiResponseBuilder::createResponse(BusinessResponseBuilder::businessList($businessList));
     }
 
     /**
@@ -55,9 +65,15 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $business = BusinessModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('business', $key);
+        }
+        return ApiResponseBuilder::createResponse(BusinessResponseBuilder::formatData($business));
     }
 
     /**
