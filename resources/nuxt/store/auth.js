@@ -19,6 +19,7 @@ export const actions = {
     AuthRepository.login(payload)
   },
   async signup(context, payload) {
+    console.log('payload:', payload)
     const response = await AuthRepository.signup({ email: payload.email, password: payload.password })
     if (response.data.access_token) {
       console.log('localstorage ni hozon!')
