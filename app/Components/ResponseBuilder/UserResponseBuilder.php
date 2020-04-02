@@ -6,10 +6,6 @@ use Illuminate\Http\{Response, JsonResponse};
 
 class UserResponseBuilder
 {
-  public function createResponse(?array $data): JsonResponse
-  {
-    return response()->json('a');
-  }
   /**
    * Dataを整形する
    * 
@@ -18,19 +14,44 @@ class UserResponseBuilder
    */
   public function formatData($user): ?array
   {
-    // try {
-    //   $userData = [
+    try {
+      $user->profile;
+      $user->adRequests;
+      $user->shops;
+      if($user->shops){
+          foreach($user->shops as $shop){
+              $shop->shopImages;
+              $shop->customerFeatures;
+              $shop->shopFeatures;
+              foreach($shop->spaces as $space){
+                  $space->spaceForms;
+                  $space->spaceImages;
+              };
+          };
+      };
+      $user->businesses;
+      if($user->businesses){
+          foreach($user->businesses as $business){
+              foreach($business->ads as $ad){
+                  $ad->targets;
+                  $ad->adImages;
+                  $ad->adForms;
+                  $ad->adRequests;
+              };
+          };
+      };
+      $userData = [
+        'user'    =>$user,
+      ];
 
-    //   ];
+      // TODO ユーザーのタイプによって処理を変える
+    }
+    catch (\Exception $e) {
+      logger()->error('UserResponseBuilder::formatData error.', ['error' => $e]);
+      return null;
+    }
 
-    //   // TODO ユーザーのタイプによって処理を変える
-    // }
-    // catch (\Exception $e) {
-    //   logger()->error('UserResponseBuilder::formatData error.', ['error' => $e]);
-    //   return null;
-    // }
-
-    return $user;
+    return $userData;
   }
 
   /**

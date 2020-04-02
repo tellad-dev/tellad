@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use UserResponseBuilder;
 
 // Model
 use UserModel;
@@ -21,8 +22,38 @@ class UserController extends Controller
   // HACK: get する内容の違いや、更新可不可は apiToken　で判定
   public function __construct()
   {
-
   }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+      $users = UserModel::get();
+      return response()->json($users);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      //
+    }
 
   /**
    * Login check
@@ -30,11 +61,10 @@ class UserController extends Controller
    * @param \Illuminate\Http\Request $request
    * @return JsonResponse
    */
-  public function show(Request $request): JsonResponse
+  public function show(string $key): JsonResponse
   {
-    $apiToken = $request->apiToken;
     try {
-      $user = UserModel::where('api_token', $apiToken)->firstOrFail();
+      $user = UserModel::where('key', $key)->firstOrFail();
     }
     catch (ModelNotFoundException $error) {
       return ApiResponseBuilder::unauthorized();
@@ -43,7 +73,7 @@ class UserController extends Controller
       return ApiResponseBuilder::serverError();
     }
 
-    return ApiResponseBuilder::createResponse(AuthResponseBuilder::formatData($user));
+    return ApiResponseBuilder::createResponse(UserResponseBuilder::formatData($user));
   }
 
   /**
