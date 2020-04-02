@@ -237,12 +237,39 @@ return [
         'App\Facades\Components\ArrayUtil',
         'ApiResponseBuilder'  =>
         'App\Facades\Components\ResponseBuilder\ApiResponseBuilder',
-
+        'AuthResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AuthResponseBuilder',
+        'UserResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\UserResponseBuilder',
+        'AdRequestResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AdRequestResponseBuilder',
+        'ProfileResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\ProfileResponseBuilder',
+        'BusinessResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\BusinessResponseBuilder',
+        'AdResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\AdResponseBuilder',
+        'ShopResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\ShopResponseBuilder',
+        'SpaceResponseBuilder' =>
+        'App\Facades\Components\ResponseBuilder\SpaceResponseBuilder',
         // Model
         'UserModel' => 'App\Facades\Models\User',
+        'AdRequestModel' => 'App\Facades\Models\AdRequest',
+        'ProfileModel' => 'App\Facades\Models\Profile',
+        'BusinessModel' => 'App\Facades\Models\Business',
+        'AdModel' => 'App\Facades\Models\Ad',
+        'ShopModel' => 'App\Facades\Models\Shop',
+        'SpaceModel' => 'App\Facades\Models\Space',
 
         // Service
         'UserService' => 'App\Facades\Services\User',
+        'AdRequestService' => 'App\Facades\Services\AdRequest',
+        'ProfileService' => 'App\Facades\Services\Profile',
+        'BusinessService' => 'App\Facades\Services\Business',
+        'AdService' => 'App\Facades\Services\Ad',
+        'ShopService' => 'App\Facades\Services\Shop',
+        'SpaceService' => 'App\Facades\Services\Space',
     ],
 
 ];

@@ -18,7 +18,7 @@ class CreateAdFormsTable extends Migration
             $table->unsignedInteger('ad_id')->comment('広告ID');
             $table->string('form')->comment('広告形態');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('ad_id')
             ->references('id')

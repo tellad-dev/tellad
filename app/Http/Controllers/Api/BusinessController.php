@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
 
-class AdsController extends Controller
+// Component
+use ApiResponseBuilder;
+use BusinessResponseBuilder;
+
+// Model
+use BusinessModel;
+
+// Service
+use BusinessService;
+
+class BusinessController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        try {
+            $businessList = BusinessService::getBusinessList($id);
+          }
+          catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::unauthorized();
+          }
+          catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+          }
+          return ApiResponseBuilder::createResponse(BusinessResponseBuilder::businessList($businessList));
     }
 
     /**
@@ -44,9 +65,15 @@ class AdsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $business = BusinessModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('business', $key);
+        }
+        return ApiResponseBuilder::createResponse(BusinessResponseBuilder::formatData($business));
     }
 
     /**

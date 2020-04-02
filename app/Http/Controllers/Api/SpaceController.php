@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
 
-class SpacesController extends Controller
+// Component
+use ApiResponseBuilder;
+use SpaceResponseBuilder;
+
+// Model
+use SpaceModel;
+
+// Service
+use SpaceService;
+
+class SpaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,9 +56,18 @@ class SpacesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $space = SpaceModel::where('key', $key)->firstOrFail();
+          }
+          catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::unauthorized();
+          }
+          catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+          }
+          return ApiResponseBuilder::createResponse(SpaceResponseBuilder::formatData($space));
     }
 
     /**

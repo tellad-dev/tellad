@@ -17,7 +17,7 @@ class ShopFeaturesTableSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             ShopFeature::create([
                 'shop_feature' => Arr::random(['駅近','住宅街','オフィス街']),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

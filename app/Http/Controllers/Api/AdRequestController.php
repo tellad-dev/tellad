@@ -2,10 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request, Response};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Http\Controllers\Controller;
 
-class ShopsController extends Controller
+// Component
+use ApiResponseBuilder;
+use AdRequestResponseBuilder;
+
+// Request
+use App\Http\Requests\AdRequestPost;
+
+// Model
+use AdRequestModel;
+
+// Service
+use AdRequestService;
+
+
+class AdRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,9 +83,23 @@ class ShopsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdRequestPost $request, string $key): JsonResponse
     {
-        //
+        try {
+            AdRequestModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('request', $key);
+        }
+
+        $request['key'] = $key;
+        try {
+            $request = AdRequestService::save($request);
+        } catch (\Exception $e) {
+            logger()->error('Request update error', ['error' => $e]);
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($request));
     }
 
     /**

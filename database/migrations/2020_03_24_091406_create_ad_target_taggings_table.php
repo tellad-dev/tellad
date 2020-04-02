@@ -18,7 +18,7 @@ class CreateAdTargetTaggingsTable extends Migration
             $table->unsignedInteger('ad_id');
             $table->unsignedInteger('target_id');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('ad_id')
             ->references('id')

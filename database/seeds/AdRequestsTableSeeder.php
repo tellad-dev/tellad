@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Request;
+use App\Models\AdRequest;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 
-class RequestsTableSeeder extends Seeder
+class AdRequestsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,10 @@ class RequestsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i = 1; $i <= 50; $i++) {
-            Request::create([
+            AdRequest::create([
                 'space_id' => $i,
                 'ad_id' => $i,
-                'sender_id' => $i,
-                'receiver_id' => 51-$i,
+                'user_id' => $i,
                 'start_date' => date('Y-m-d', strtotime(Arr::random([1,2,3]).' week')),
                 'order_price' => Arr::random([1000,2000,3000,4000,5000]),
                 'span' => Arr::random(['1ヶ月','2ヶ月','3ヶ月']),

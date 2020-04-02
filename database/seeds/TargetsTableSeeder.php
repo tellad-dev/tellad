@@ -17,7 +17,7 @@ class TargetsTableSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             Target::create([
                 'target' => Arr::random(['駅近','カップル','オフィス街']),
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }
