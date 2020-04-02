@@ -36,14 +36,15 @@ class SpaceResponseBuilder
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($request): ?array
+    public function formatData($space): ?array
     {
         try {
-            $requestData = [
-                'name'     => $request->name,
-                'value'    => $request->value,
-                'minPrice' => $request->min_price,
-                'maxPrice' => $request->max_price,
+            $space->shop;
+            $space->spaceForms;
+            $space->spaceImages;
+            $space->adRequests;
+            $spaceData = [
+                'space'     => $space,
             ];
         }
         catch (\Exception $e) {
@@ -51,7 +52,7 @@ class SpaceResponseBuilder
             return null;
         }
 
-        return $requestData;
+        return $spaceData;
     }
 
     /**

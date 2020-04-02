@@ -20,4 +20,9 @@ class Space extends Model
     {
         return $this->hasMany(SpaceImage::class);
     }
+
+    public function adRequests()
+    {
+        return $this->hasMany(AdRequest::class);
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Component
 use ApiResponseBuilder;
+use SpaceResponseBuilder;
 
 // Model
 use SpaceModel;
@@ -55,9 +56,18 @@ class SpaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $key)
     {
-        //
+        try {
+            $space = SpaceModel::where('key', $key)->firstOrFail();
+          }
+          catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::unauthorized();
+          }
+          catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+          }
+          return ApiResponseBuilder::createResponse(SpaceResponseBuilder::formatData($space));
     }
 
     /**
