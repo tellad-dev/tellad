@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Hash;
-
+use Illuminate\Support\Facades\Auth;
 use App\Traits\{CreateKey, FindByKey};
 
 use ArrayUtil;
@@ -16,25 +16,29 @@ class User
   use FindByKey;
 
   // singup時
-  public function create(array $param)
+  public function create($request)
   {
-    $param = ArrayUtil::snakelizeKey($param);
-
-    // TODO model編集後
-    $attributes = [
-
-    ];
-
-    $user = UserModel::where('email', $attributes['email'])->whereNotNull('email')->first();
-
-    if (is_null($user)){
-      $attributes['key'] = $this->createKey();
-      $user = UserModel::create($attributes);
-    }
-    else {
-      $user->update($attributes);
-    }
-
+    $password = bcrypt($request->password);
+    $key = $this->createKey();
+    $userId = UserModel::create([
+      'name' => $request['name'],
+      'email' => $request['email'],
+      'password' => $password,
+      'key' => $key,
+    ])->id;
+    $credentials = request(['email', 'password']);
+    $apiToken = auth("api")->attempt($credentials);
+    UserModel::find($userId)->update(['api_token'=>$apiToken]);
+    $user = UserModel::find($userId);
+    return $user;
+  }
+  // tokenRefresh
+  public function tokenRefresh($user)
+  {
+    $credentials = request(['email', 'password']);
+    $apiToken = auth("api")->attempt($credentials);
+    UserModel::find($user['id'])->update(['api_token'=>$apiToken]);
+    $user = UserModel::find($user['id']);
     return $user;
   }
 

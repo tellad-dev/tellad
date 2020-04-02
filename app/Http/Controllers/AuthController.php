@@ -5,33 +5,49 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Traits\CreateKey; 
+// Component
+use ApiResponseBuilder;
+use UserResponseBuilder;
+
+// Model
+use UserModel;
+
+// Service
+use UserService;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        
-        $user = new User;
-        $user->fill($request->all());
-        $user->password=bcrypt($request->password);
-        $user->save();
-        $credentials = request(['email', 'password']);
-        $token = auth("api")->attempt($credentials);
+    use CreateKey; 
 
-        return $this->respondWithToken($token);
+    public function register(Request $request)
+    {
+        try {
+            $user = UserService::create($request);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(UserResponseBuilder::formatData($user));
     }
 
-    public function login() {
-        $credentials = request(['email', 'password']);
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
 
         if (! $token = auth("api")->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return ApiResponseBuilder::unauthorized();
         }
-
-        return $this->respondWithToken($token);
+        try {
+            $user = UserModel::where('email',$request['email'])->first();
+            $user = UserService::tokenRefresh($user);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(UserResponseBuilder::formatData($user));
     }
 
-        /**
+    /**
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
@@ -40,28 +56,5 @@ class AuthController extends Controller
     {
         auth()->logout();
         return response()->json(['message' => 'ログアウトしました。']);
-    }
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh()
-    {
-        return $this->respondWithToken(auth("api")->refresh());
-    }
-
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth("api")->factory()->getTTL() * 60
-        ]);
     }
 }

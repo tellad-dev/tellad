@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('api_token')->nullable();
+            $table->string('api_token',500)->nullable();
             $table->unsignedInteger('type')->nullable()->comment('0がゲスト, 1がホスト');
             $table->unsignedInteger('facebook_id')->nullable()->unique();
             $table->string('stripe_id')->nullable()->unique()->comment('Stripeの顧客ID');
