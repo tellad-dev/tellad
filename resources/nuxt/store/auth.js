@@ -3,7 +3,7 @@ const AuthRepository = RepositoryFactory.get('auth')
 
 export const state = () => ({
   user: {},
-  token: '',
+  token: null,
 })
 
 export const mutations = {
@@ -42,17 +42,17 @@ export const actions = {
         })
     })
   },
-  async logout({ commit }) {
+  logout({ commit }) {
     return new Promise((resolve, reject) => {
-      commit('setUser', { user: null })
+      commit('setUser', { user: {} })
       AuthRepository.logout()
-      .then(response => {
-        commit('setToken', { token: null })
-        resolve(response)
-      })
-      .catch(error => {
-        reject(error)
-      })
+        .then(response => {
+          commit('setToken', { token: null })
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
 }
