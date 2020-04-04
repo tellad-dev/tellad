@@ -4,10 +4,10 @@ const auth: Middleware = ({ route, store, redirect }) => {
   if (route.name) {
     if (
       !(route.name === 'index' || route.name.includes('signup') || route.name === 'login') &&
-      !store.state.auth.user.apiToken
+      !store.state.auth.token
     ) {
       redirect('/login')
-    } else if ((route.name === 'signin' || route.name.includes('signup')) && store.state.auth.user.apiToken) {
+    } else if ((route.name === 'signin' || route.name.includes('signup')) && store.state.auth.token) {
       redirect('/')
     }
   } else {

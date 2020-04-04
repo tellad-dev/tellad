@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 |
 */
     // Auth API
-    Route::post("/login", "AuthController@login");
-    Route::post('/register', 'AuthController@register');
-    Route::post('/logout', 'AuthController@logout');
+    Route::namespace('Api')->group(function () {
+        Route::post("/login", "AuthController@login");
+        Route::post('/register', 'AuthController@register');
+        Route::post('/logout', 'AuthController@logout');
+    });
     //REST API
     Route::resource('profiles','Api\ProfileController');
     Route::resource('adrequests','Api\AdRequestController');

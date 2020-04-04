@@ -2,12 +2,15 @@
 
 namespace App\Services;
 
+use DB;
 use Hash;
-use Illuminate\Support\Facades\Auth;
+
+use Auth;
+
 use App\Traits\{CreateKey, FindByKey};
 
 use ArrayUtil;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use UserModel;
 
 class User
@@ -16,20 +19,25 @@ class User
   use FindByKey;
 
   // singup時
-  public function create($request)
+  public function create(array $params)
   {
-    $password = bcrypt($request->password);
+    
+    $password = bcrypt($params['password']);
     $key = $this->createKey();
     $userId = UserModel::create([
-      'name' => $request['name'],
-      'email' => $request['email'],
+      'name' => $params['name'] ?? null,
+      'email' => $params['email'],
       'password' => $password,
+      'activation_code'   => $params['activation_code'] ?? $this->createKey(),
+      'activate_expire_at' => $params['activate_expire_at'] ?? now()->addDay(),
+      'activated_at'      => $params['activated_at'] ?? null,
       'key' => $key,
     ])->id;
     $credentials = request(['email', 'password']);
     $apiToken = auth("api")->attempt($credentials);
     UserModel::find($userId)->update(['api_token'=>$apiToken]);
     $user = UserModel::find($userId);
+
     return $user;
   }
   // tokenRefresh

@@ -16,10 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('api_token',500)->nullable();
+            $table->text('api_token')->nullable();
             $table->unsignedInteger('type')->nullable()->comment('0がゲスト, 1がホスト');
             $table->unsignedInteger('facebook_id')->nullable()->unique();
             $table->string('stripe_id')->nullable()->unique()->comment('Stripeの顧客ID');
