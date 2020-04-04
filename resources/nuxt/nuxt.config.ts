@@ -46,7 +46,15 @@ const nuxtConfig: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vue-scrollto', '~/plugins/vue-the-mask', '~/plugins/vue-formulate'],
+  plugins: [
+    '~/plugins/vue-scrollto',
+    '~/plugins/vue-the-mask',
+    '~/plugins/vue-formulate',
+    {
+      src: '~/plugins/localStorage',
+      ssr: false,
+    },
+  ],
   /*
    ** Nuxt.js modules
    */
