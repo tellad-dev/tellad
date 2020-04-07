@@ -18,7 +18,7 @@ class CreateSpaceImagesTable extends Migration
             $table->unsignedInteger('space_id')->comment('スペースID');
             $table->string('path')->comment('画像パス');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('space_id')
             ->references('id')

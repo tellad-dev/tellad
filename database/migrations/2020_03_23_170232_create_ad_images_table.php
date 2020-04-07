@@ -18,7 +18,7 @@ class CreateAdImagesTable extends Migration
             $table->unsignedInteger('ad_id')->comment('広告ID');
             $table->string('path')->comment('画像パス');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('ad_id')
             ->references('id')

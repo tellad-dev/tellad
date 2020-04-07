@@ -18,7 +18,7 @@ class SpaceImagesTableSeeder extends Seeder
             SpaceImage::create([
                 'space_id' => $i,
                 'path' => 'S3_BUCKET_NAME'.$i,
-                'key' => $faker->md5(),
+                // 'key' => $faker->md5(),
             ]);
         }
     }

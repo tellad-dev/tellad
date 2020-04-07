@@ -18,7 +18,7 @@ class CreateShopImagesTable extends Migration
             $table->unsignedInteger('shop_id')->comment('店舗ID');
             $table->string('path')->comment('画像パス');
             $table->timestamps();
-            $table->string('key', 32)->unique();
+            // $table->string('key', 32)->unique();
 
             $table->foreign('shop_id')
             ->references('id')
