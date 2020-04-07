@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Services;
@@ -16,27 +15,29 @@ class Profile
   use CreateKey;
   use FindByKey;
 
-  // singup時
-  public function create(array $param)
+  public function create($request)
   {
-    $param = ArrayUtil::snakelizeKey($param);
+    $profileInputs = $request['profile'];
+    $profileInputs['key']= $this->createKey();
+    $profileInputs['user_id'] = auth()->id();
+    $profile = ProfileModel::create($profileInputs);
+    return $profile;
+  }
 
-    // TODO model編集後
-    $attributes = [
-
-    ];
-
-    $user = UserModel::where('email', $attributes['email'])->whereNotNull('email')->first();
-
-    if (is_null($user)){
-      $attributes['key'] = $this->createKey();
-      $user = UserModel::create($attributes);
+  public function update($request,$key)
+  {
+    try {
+      $profile = ProfileModel::where('key', $key)->first();
+      $profile->fill($request['profile'])->save();
+    } catch (ModelNotFoundException $e) {
+      logger()->error('ShopModel not found.', ['error' => $e]);
+      throw new \Exception('ShopModel を取得できなかった');
+    } catch (\Exception $e) {
+      logger()->error('ShopModel deleting is failed.', ['error' => $e]);
+      throw new \Exception('ShopModel を削除できなかった');
     }
-    else {
-      $user->update($attributes);
-    }
 
-    return $user;
+    return $profile;
   }
 
   public function save(array $params)

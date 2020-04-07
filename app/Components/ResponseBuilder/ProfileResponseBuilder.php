@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Components\ResponseBuilder;
 
 use Illuminate\Http\{Response, JsonResponse};
@@ -36,14 +35,11 @@ class ProfileResponseBuilder
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($request): ?array
+    public function formatData($profile): ?array
     {
         try {
-            $requestData = [
-                'name'     => $request->name,
-                'value'    => $request->value,
-                'minPrice' => $request->min_price,
-                'maxPrice' => $request->max_price,
+            $profileData = [
+                'profile'     => $profile,
             ];
         }
         catch (\Exception $e) {
@@ -51,7 +47,7 @@ class ProfileResponseBuilder
             return null;
         }
 
-        return $requestData;
+        return $profileData;
     }
 
     /**

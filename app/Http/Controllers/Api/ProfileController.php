@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\{JsonResponse, Request, Response};
@@ -34,16 +33,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,29 +40,13 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id,$profileId)
-    {
-        return array($id,$profileId);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $profile = ProfileService::create($request);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(ProfileResponseBuilder::formatData($profile));
     }
 
     /**
@@ -83,23 +56,17 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdRequestPost $request, string $key): JsonResponse
+    public function update(Request $request,$key)
     {
         try {
-            AdRequestModel::where('key', $key)->firstOrFail();
+            $profile = ProfileModel::where('key', $key)->firstOrFail();
+            $profile = ProfileService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
             return ApiResponseBuilder::modelNotFound('request', $key);
         }
 
-        $request['key'] = $key;
-        try {
-            $request = AdRequestService::save($request);
-        } catch (\Exception $e) {
-            logger()->error('Request update error', ['error' => $e]);
-            return ApiResponseBuilder::serverError();
-        }
-        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($request));
+        return ApiResponseBuilder::createResponse(ProfileResponseBuilder::formatData($profile));
     }
 
     /**
