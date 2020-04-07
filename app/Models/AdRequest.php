@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdRequest extends Model
 {
+    protected $guarded = ['id'];
+
     public function ad()
     {
         return $this->belongsTo(Ad::class);

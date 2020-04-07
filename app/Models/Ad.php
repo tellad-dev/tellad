@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
+    protected $guarded = ['id'];
+
     public function business()
     {
         return $this->belongsTo(Business::class);
@@ -24,6 +26,7 @@ class Ad extends Model
     }
     public function targets()
     {
-        return $this->belongsToMany(Target::class,'ad_target_taggings','target_id','ad_id');
+        return $this->belongsToMany(Target::class,'ad_target_taggings','ad_id','target_id')
+                    ->withTimestamps();;
     }
 }
