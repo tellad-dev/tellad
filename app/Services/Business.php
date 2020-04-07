@@ -15,27 +15,29 @@ class Business
   use CreateKey;
   use FindByKey;
 
-  // singup時
-  public function create(array $param)
+  public function create($request)
   {
-    $param = ArrayUtil::snakelizeKey($param);
+    $businessInputs = $request['business'];
+    $businessInputs['key']= $this->createKey();
+    $businessInputs['user_id'] = auth()->id();
+    $business = BusinessModel::create($businessInputs);
+    return $business;
+  }
 
-    // TODO model編集後
-    $attributes = [
-
-    ];
-
-    $user = UserModel::where('email', $attributes['email'])->whereNotNull('email')->first();
-
-    if (is_null($user)){
-      $attributes['key'] = $this->createKey();
-      $user = UserModel::create($attributes);
+  public function update($request,$key)
+  {
+    try {
+      $business = BusinessModel::where('key', $key)->first();
+      $business->fill($request['business'])->save();
+    } catch (ModelNotFoundException $e) {
+      logger()->error('ShopModel not found.', ['error' => $e]);
+      throw new \Exception('ShopModel を取得できなかった');
+    } catch (\Exception $e) {
+      logger()->error('ShopModel deleting is failed.', ['error' => $e]);
+      throw new \Exception('ShopModel を削除できなかった');
     }
-    else {
-      $user->update($attributes);
-    }
 
-    return $user;
+    return $business;
   }
 
   public function save(array $params)
