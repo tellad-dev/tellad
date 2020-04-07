@@ -35,16 +35,6 @@ class ShopController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -82,29 +72,17 @@ class ShopController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $key)
+    public function update(Request $request,$key)
     {
         try {
             $shop = ShopModel::where('key', $key)->firstOrFail();
             $shop = ShopService::update($request,$key);
-            return $shop;
         }
         catch (ModelNotFoundException $error) {
             return ApiResponseBuilder::modelNotFound('request', $key);
