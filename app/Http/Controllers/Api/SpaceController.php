@@ -99,7 +99,6 @@ class SpaceController extends Controller
         try {
             $space = SpaceModel::where('key', $key)->firstOrFail();
             $space = SpaceService::update($request,$key);
-            return $space;
         }
         catch (ModelNotFoundException $error) {
             return ApiResponseBuilder::modelNotFound('request', $key);

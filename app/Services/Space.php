@@ -10,6 +10,7 @@ use App\Traits\{CreateKey, FindByKey};
 use ArrayUtil;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use SpaceModel;
+use SpaceFormModel;
 
 class Space
 {
@@ -22,6 +23,11 @@ class Space
     $spaceInputs = $request['space'];
     $spaceInputs['key']= $this->createKey();
     $space = SpaceModel::create($spaceInputs);
+    $spaceFormInputs = $request['spaceForms'];
+    foreach($spaceFormInputs as $spaceFormInput){
+      $spaceFormInput['key']= $this->createKey();
+      $space->spaceForms()->create($spaceFormInput);
+    }
     if($request->file('files')){
       $spaceImages = $request->file('files');
       foreach ($spaceImages as $key => $spaceImage) {
@@ -37,13 +43,19 @@ class Space
     try {
       $space = SpaceModel::where('key', $key)->first();
       $space->fill($request['space'])->save();
+      $spaceFormInputs = $request['spaceForms'];
+      $space->spaceForms()->delete();
+      foreach($spaceFormInputs as $spaceFormInput){
+        $spaceFormInput['key']= $this->createKey();
+        $space->spaceForms()->create($spaceFormInput);
+      }
       if($request->file('files')){
         $spaceImagePaths = $space->spaceImages;
         foreach ($spaceImagePaths as $key => $spaceImagePath) {
           //S3の画像とDBのパスを削除
           Storage::disk('s3')->delete($spaceImagePath['path']);
-          $space->spaceImages()->delete();
         }
+        $space->spaceImages()->delete();
         $requestImages = $request->file('files');
         foreach ($requestImages as $key => $requestImage) {
           //S3の画像とDBのパスを追加
