@@ -36,14 +36,11 @@ class AdRequestResponseBuilder
      * @param  RequestModel $request
      * @return array|null $requestData
      */
-    public function formatData($request): ?array
+    public function formatData($adRequest): ?array
     {
         try {
-            $requestData = [
-                'name'     => $request->name,
-                'value'    => $request->value,
-                'minPrice' => $request->min_price,
-                'maxPrice' => $request->max_price,
+            $adRequestData = [
+                'adRequest' => $adRequest,
             ];
         }
         catch (\Exception $e) {
@@ -51,7 +48,7 @@ class AdRequestResponseBuilder
             return null;
         }
 
-        return $requestData;
+        return $adRequestData;
     }
 
     /**

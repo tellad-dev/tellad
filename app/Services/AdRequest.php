@@ -15,6 +15,29 @@ class AdRequest {
   use CreateKey;
   use FindByKey;
 
+  public function create($request)
+  {
+    $adRequestInputs = $request['adRequest'];
+    $adRequestInputs['key']= $this->createKey();
+    $adRequestInputs['user_id'] = auth()->id();
+    $adRequest = AdRequestModel::create($adRequestInputs);
+    return $adRequest;
+  }
+
+  public function update($request,$key)
+  {
+    try {
+      $adRequest = AdRequestModel::where('key', $key)->first();
+      $adRequest->fill($request['adRequest'])->save();
+    } catch (ModelNotFoundException $e) {
+      logger()->error('ShopModel not found.', ['error' => $e]);
+      throw new \Exception('ShopModel を取得できなかった');
+    } catch (\Exception $e) {
+      logger()->error('ShopModel deleting is failed.', ['error' => $e]);
+      throw new \Exception('ShopModel を削除できなかった');
+    }
+    return $adRequest;
+  }
   // ポリモーフィズムで create するため model を使う
   public function saves($model, array $requests)
   {

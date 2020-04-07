@@ -34,16 +34,6 @@ class AdRequestController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,7 +41,13 @@ class AdRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $adRequest = AdRequestService::create($request);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($adRequest));
     }
 
     /**
@@ -60,20 +56,15 @@ class AdRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($key)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $adRequest = AdRequestModel::where('key', $key)->firstOrFail();
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('adRequest', $key);
+        }
+        return ApiResponseBuilder::createResponse(AdResponseBuilder::formatData($adRequest));
     }
 
     /**
@@ -83,23 +74,17 @@ class AdRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdRequestPost $request, string $key): JsonResponse
+    public function update(Request $request,$key)
     {
         try {
-            AdRequestModel::where('key', $key)->firstOrFail();
+            $adRequest = AdRequestModel::where('key', $key)->firstOrFail();
+            $adRequest = AdRequestService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
             return ApiResponseBuilder::modelNotFound('request', $key);
         }
 
-        $request['key'] = $key;
-        try {
-            $request = AdRequestService::save($request);
-        } catch (\Exception $e) {
-            logger()->error('Request update error', ['error' => $e]);
-            return ApiResponseBuilder::serverError();
-        }
-        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($request));
+        return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($adRequest));
     }
 
     /**
