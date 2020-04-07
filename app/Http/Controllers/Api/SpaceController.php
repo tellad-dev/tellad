@@ -47,7 +47,13 @@ class SpaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $space = SpaceService::create($request);
+        }
+        catch (\Exception $e) {
+            return ApiResponseBuilder::serverError();
+        }
+        return ApiResponseBuilder::createResponse(SpaceResponseBuilder::formatData($space));
     }
 
     /**
@@ -88,9 +94,18 @@ class SpaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$key)
     {
-        //
+        try {
+            $space = SpaceModel::where('key', $key)->firstOrFail();
+            $space = SpaceService::update($request,$key);
+            return $space;
+        }
+        catch (ModelNotFoundException $error) {
+            return ApiResponseBuilder::modelNotFound('request', $key);
+        }
+
+        return ApiResponseBuilder::createResponse(SpaceResponseBuilder::formatData($space));
     }
 
     /**
