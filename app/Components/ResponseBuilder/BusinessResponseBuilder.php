@@ -50,7 +50,7 @@ class BusinessResponseBuilder
             ];
         }
         catch (\Exception $e) {
-            logger()->error('AdRequestResponseBuilder::formatData error.', ['error' => $e ]);
+            logger()->error('BusinessResponseBuilder::formatData error.', ['error' => $e ]);
             return null;
         }
 

@@ -80,7 +80,7 @@ class SpaceController extends Controller
             $space = SpaceService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('space', $key);
         }
 
         return ApiResponseBuilder::createResponse(SpaceResponseBuilder::formatData($space));

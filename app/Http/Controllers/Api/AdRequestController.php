@@ -81,7 +81,7 @@ class AdRequestController extends Controller
             $adRequest = AdRequestService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('adRequest', $key);
         }
 
         return ApiResponseBuilder::createResponse(AdRequestResponseBuilder::formatData($adRequest));

@@ -87,7 +87,7 @@ class BusinessController extends Controller
             $business = BusinessService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('business', $key);
         }
 
         return ApiResponseBuilder::createResponse(BusinessResponseBuilder::formatData($business));

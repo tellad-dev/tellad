@@ -63,7 +63,7 @@ class ProfileController extends Controller
             $profile = ProfileService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('profile', $key);
         }
 
         return ApiResponseBuilder::createResponse(ProfileResponseBuilder::formatData($profile));

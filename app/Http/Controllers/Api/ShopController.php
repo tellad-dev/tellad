@@ -85,7 +85,7 @@ class ShopController extends Controller
             $shop = ShopService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('shop', $key);
         }
 
         return ApiResponseBuilder::createResponse(ShopResponseBuilder::formatData($shop));

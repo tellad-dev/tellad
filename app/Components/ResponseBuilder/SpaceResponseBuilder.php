@@ -48,7 +48,7 @@ class SpaceResponseBuilder
             ];
         }
         catch (\Exception $e) {
-            logger()->error('AdRequestResponseBuilder::formatData error.', ['error' => $e ]);
+            logger()->error('SpaceResponseBuilder::formatData error.', ['error' => $e ]);
             return null;
         }
 

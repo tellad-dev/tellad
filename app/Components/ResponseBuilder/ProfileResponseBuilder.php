@@ -43,7 +43,7 @@ class ProfileResponseBuilder
             ];
         }
         catch (\Exception $e) {
-            logger()->error('AdRequestResponseBuilder::formatData error.', ['error' => $e ]);
+            logger()->error('ProfileResponseBuilder::formatData error.', ['error' => $e ]);
             return null;
         }
 

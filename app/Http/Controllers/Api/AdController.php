@@ -58,7 +58,7 @@ class AdController extends Controller
             $ad = AdModel::where('key', $key)->firstOrFail();
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('business', $key);
+            return ApiResponseBuilder::modelNotFound('ad', $key);
         }
         return ApiResponseBuilder::createResponse(AdResponseBuilder::formatData($ad));
     }
@@ -77,7 +77,7 @@ class AdController extends Controller
             $ad = AdService::update($request,$key);
         }
         catch (ModelNotFoundException $error) {
-            return ApiResponseBuilder::modelNotFound('request', $key);
+            return ApiResponseBuilder::modelNotFound('ad', $key);
         }
 
         return ApiResponseBuilder::createResponse(AdResponseBuilder::formatData($ad));
