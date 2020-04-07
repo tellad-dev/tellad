@@ -19,10 +19,9 @@ use Illuminate\Http\Request;
         Route::post('/logout', 'AuthController@logout');
     });
     //REST API
-    Route::resource('profiles','Api\ProfileController');
-    Route::resource('adrequests','Api\AdRequestController');
-    Route::resource('businesses','Api\BusinessController');
-    Route::resource('ads','Api\AdController');
-    Route::resource('shops','Api\ShopController');
-    Route::resource('spaces','Api\SpaceController');
-    Route::resource('spaceforms','Api\SpaceFormController');
+    Route::resource('profiles','Api\ProfileController', ['except' => ['create', 'edit', 'show']]);
+    Route::resource('adrequests','Api\AdRequestController', ['except' => ['create', 'edit']]);
+    Route::resource('businesses','Api\BusinessController', ['except' => ['create', 'edit']]);
+    Route::resource('ads','Api\AdController', ['except' => ['create', 'edit']]);
+    Route::resource('shops','Api\ShopController', ['except' => ['create', 'edit']]);
+    Route::resource('spaces','Api\SpaceController', ['except' => ['create', 'edit']]);
